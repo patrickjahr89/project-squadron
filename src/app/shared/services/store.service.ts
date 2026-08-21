@@ -10,6 +10,7 @@ import {
 } from "@ngrx/signals";
 import {
   DrawPlan,
+  DrawResult,
   DrawStatus,
   Person,
   Team,
@@ -30,9 +31,19 @@ export type ViewState =
   | "draw_config"
   | "draw_anim"
   | "draw_result";
+
+const routesByView: Record<ViewState, string> = {
+  dashboard: "/dashboard",
+  people: "/people",
+  teams: "/teams",
+  draw_config: "/draw/config",
+  draw_anim: "/draw/animation",
+  draw_result: "/results",
+};
 export type {
   Assignment,
   DrawPlan,
+  DrawResult,
   DrawStatus,
   Person,
   Team,
@@ -48,6 +59,8 @@ interface StoreState {
   selectedTeamIds: Set<string>;
   lastDrawResult: { time: Date; persons: number; teams: number } | null;
   currentDrawResults: Map<string, string>;
+  drawResults: DrawResult[];
+  selectedDrawResultId: string | null;
   drawPlan: DrawPlan | null;
 }
 
@@ -61,6 +74,8 @@ const initialState: StoreState = {
   selectedTeamIds: new Set(),
   lastDrawResult: null,
   currentDrawResults: new Map(),
+  drawResults: [],
+  selectedDrawResultId: null,
   drawPlan: null,
 };
 
@@ -80,6 +95,17 @@ export const StoreService = signalStore(
       store
         .teams()
         .reduce((sum, team) => sum + freeCapacity(store.people(), team), 0),
+    ),
+    canInitiateDraw: computed(
+      () =>
+        store.people().some((person) => person.teamId === null) &&
+        store.teams().some((team) => freeCapacity(store.people(), team) > 0),
+    ),
+    canShowResults: computed(() => store.drawResults().length > 0),
+    selectedDrawResult: computed(() =>
+      store
+        .drawResults()
+        .find((result) => result.id === store.selectedDrawResultId()),
     ),
     selectedFreeSlots: computed(() =>
       [...store.selectedTeamIds()].reduce((sum, id) => {
@@ -106,9 +132,6 @@ export const StoreService = signalStore(
     const ensureEditable = () =>
       store.workflow() !== "animating" ||
       fail("Changes are locked while the draw is running.");
-    const routeFor = (view: ViewState) =>
-      view === "dashboard" ? "/dashboard" : `/${view.replace("_", "-")}`;
-
     return {
       setErrorMessage(errorMessage: string | null): void {
         patchState(store, { errorMessage });
@@ -146,12 +169,17 @@ export const StoreService = signalStore(
           fail("Prepare a valid draw before starting the animation.");
           return;
         }
-        if (view === "draw_result" && store.workflow() !== "completed") {
+        if (view === "draw_result" && !store.canShowResults()) {
           fail("No completed draw result is available.");
           return;
         }
         patchState(store, { errorMessage: null });
-        void router.navigateByUrl(routeFor(view));
+        void router.navigateByUrl(routesByView[view]);
+      },
+      selectDrawResult(id: string): void {
+        if (store.drawResults().some((result) => result.id === id)) {
+          patchState(store, { selectedDrawResultId: id });
+        }
       },
       addPerson(person: Person): boolean {
         if (!ensureEditable()) return false;
@@ -364,17 +392,36 @@ export const StoreService = signalStore(
             assignment.teamId,
           ]),
         );
+        const people = store
+          .people()
+          .map((person) =>
+            result.has(person.id)
+              ? { ...person, teamId: result.get(person.id)! }
+              : person,
+          );
+        const teamIds = new Set(plan.teamIds);
+        const time = new Date();
+        const drawResult: DrawResult = {
+          id: `${time.toISOString()}-${plan.seed}`,
+          time,
+          assignments: plan.assignments.map((assignment) => ({
+            ...assignment,
+          })),
+          people: people
+            .filter((person) => person.teamId && teamIds.has(person.teamId))
+            .map((person) => ({ ...person, skills: [...person.skills] })),
+          teams: store
+            .teams()
+            .filter((team) => teamIds.has(team.id))
+            .map((team) => ({ ...team })),
+        };
         patchState(store, {
-          people: store
-            .people()
-            .map((person) =>
-              result.has(person.id)
-                ? { ...person, teamId: result.get(person.id)! }
-                : person,
-            ),
+          people,
           currentDrawResults: result,
+          drawResults: [drawResult, ...store.drawResults()].slice(0, 10),
+          selectedDrawResultId: drawResult.id,
           lastDrawResult: {
-            time: new Date(),
+            time,
             persons: result.size,
             teams: new Set(result.values()).size,
           },
@@ -406,6 +453,11 @@ export const StoreService = signalStore(
                 time: new Date(saved.lastDrawResult.time),
               }
             : null,
+          drawResults: saved.drawResults.map((result) => ({
+            ...result,
+            time: new Date(result.time),
+          })),
+          selectedDrawResultId: saved.drawResults[0]?.id ?? null,
         });
       }
       effect(() =>
@@ -419,6 +471,10 @@ export const StoreService = signalStore(
                 time: store.lastDrawResult()!.time.toISOString(),
               }
             : null,
+          drawResults: store.drawResults().map((result) => ({
+            ...result,
+            time: result.time.toISOString(),
+          })),
         }),
       );
     },

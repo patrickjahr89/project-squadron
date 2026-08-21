@@ -19,47 +19,34 @@ export class DrawResultComponent {
   }
 
   getTeamsInResult() {
-    // Return teams that were involved in the selected teams for the draw
-    return [
-      ...new Set([
-        ...this.store.currentDrawResults().values(),
-        ...this.store
-          .people()
-          .filter(
-            (person) =>
-              person.teamId && this.store.selectedTeamIds().has(person.teamId),
-          )
-          .map((person) => person.teamId!),
-      ]),
-    ].filter((teamId) => this.store.teams().some((team) => team.id === teamId));
+    return this.store.selectedDrawResult()?.teams.map((team) => team.id) ?? [];
   }
 
   getTeam(teamId: string) {
-    return this.store.teams().find((t) => t.id === teamId);
+    return this.store
+      .selectedDrawResult()
+      ?.teams.find((team) => team.id === teamId);
   }
 
   getAllMembers(teamId: string) {
-    return this.store.people().filter((p) => p.teamId === teamId);
+    return (
+      this.store
+        .selectedDrawResult()
+        ?.people.filter((person) => person.teamId === teamId) ?? []
+    );
   }
 
   getNewAssignmentsForTeam(teamId: string) {
-    const newAssignedIds: string[] = [];
-    const results = this.store.currentDrawResults();
-    results.forEach((assignedTeamId, personId) => {
-      if (assignedTeamId === teamId) {
-        newAssignedIds.push(personId);
-      }
-    });
-    return newAssignedIds;
+    return (
+      this.store
+        .selectedDrawResult()
+        ?.assignments.filter((assignment) => assignment.teamId === teamId)
+        .map((assignment) => assignment.personId) ?? []
+    );
   }
 
-  getOldAssignmentsForTeam(teamId: string) {
-    // People in this team that were NOT part of the recent result map
-    const results = this.store.currentDrawResults();
-    return this.store
-      .people()
-      .filter((p) => p.teamId === teamId && !results.has(p.id))
-      .map((p) => p.id);
+  selectDraw(event: Event) {
+    this.store.selectDrawResult((event.target as HTMLSelectElement).value);
   }
 
   getArray(n: number) {

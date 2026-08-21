@@ -98,37 +98,40 @@
         >Teams</span
       >
     </button>
-    <button
-      (click)="store.navigate('draw_result')"
-      [ngClass]="
-        isActive('/results')
-          ? 'text-primary font-bold border-l-2 border-primary-container bg-surface-container-low fill-icon'
-          : 'text-on-surface-variant hover:bg-surface-container-highest hover:text-primary border-l-2 border-transparent'
-      "
-      class="group flex items-center gap-3 py-3 px-3 pl-4 transition-all duration-200 ease-in-out font-label-sm text-label-sm rounded w-full text-left"
-    >
-      <span
-        class="material-symbols-outlined text-[20px] transition-transform group-hover:scale-110"
-        [ngClass]="isActive('/results') ? 'text-primary-container' : ''"
-        >analytics</span
-      >
-      <span
-        class="tracking-widest uppercase"
+    @if (store.canShowResults()) {
+      <button
+        (click)="store.navigate('draw_result')"
         [ngClass]="
           isActive('/results')
-            ? 'drop-shadow-[0_0_8px_rgba(0,255,194,0.4)]'
-            : ''
+            ? 'text-primary font-bold border-l-2 border-primary-container bg-surface-container-low fill-icon'
+            : 'text-on-surface-variant hover:bg-surface-container-highest hover:text-primary border-l-2 border-transparent'
         "
-        >Results</span
+        class="group flex items-center gap-3 py-3 px-3 pl-4 transition-all duration-200 ease-in-out font-label-sm text-label-sm rounded w-full text-left"
       >
-    </button>
+        <span
+          class="material-symbols-outlined text-[20px] transition-transform group-hover:scale-110"
+          [ngClass]="isActive('/results') ? 'text-primary-container' : ''"
+          >analytics</span
+        >
+        <span
+          class="tracking-widest uppercase"
+          [ngClass]="
+            isActive('/results')
+              ? 'drop-shadow-[0_0_8px_rgba(0,255,194,0.4)]'
+              : ''
+          "
+          >Results</span
+        >
+      </button>
+    }
   </nav>
 
   <div class="px-margin mt-auto pt-6 flex flex-col gap-4">
     <div class="w-full h-px bg-outline-variant"></div>
     <button
       (click)="store.initiateDrawConfig()"
-      class="w-full border border-primary-container bg-surface-container-lowest text-primary-container hover:bg-primary-container hover:text-background py-2 px-4 font-label-sm text-label-sm uppercase transition-all duration-200 shadow-[0_0_10px_rgba(0,255,194,0)] hover:shadow-[0_0_15px_rgba(0,255,194,0.4)] flex justify-center items-center gap-2"
+      [disabled]="!store.canInitiateDraw()"
+      class="w-full border border-primary-container bg-surface-container-lowest text-primary-container hover:bg-primary-container hover:text-background disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-surface-container-lowest disabled:hover:text-primary-container disabled:hover:shadow-none py-2 px-4 font-label-sm text-label-sm uppercase transition-all duration-200 shadow-[0_0_10px_rgba(0,255,194,0)] hover:shadow-[0_0_15px_rgba(0,255,194,0.4)] flex justify-center items-center gap-2"
     >
       <span class="material-symbols-outlined text-[16px]">terminal</span>
       INITIATE_DRAW

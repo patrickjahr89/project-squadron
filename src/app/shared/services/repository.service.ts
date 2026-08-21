@@ -1,11 +1,26 @@
 import { Injectable } from "@angular/core";
-import { Person, Team, validatePerson, validateTeam } from "../models/domain";
+import {
+  Assignment,
+  Person,
+  Team,
+  validatePerson,
+  validateTeam,
+} from "../models/domain";
+
+export interface RepositoryDrawResult {
+  id: string;
+  time: string;
+  assignments: Assignment[];
+  people: Person[];
+  teams: Team[];
+}
 
 export interface RepositorySnapshot {
   version: number;
   people: Person[];
   teams: Team[];
   lastDrawResult: { time: string; persons: number; teams: number } | null;
+  drawResults: RepositoryDrawResult[];
 }
 
 @Injectable({ providedIn: "root" })
@@ -52,6 +67,9 @@ export class RepositoryService {
         people: parsed.people,
         teams: parsed.teams,
         lastDrawResult: parsed.lastDrawResult ?? null,
+        drawResults: Array.isArray(parsed.drawResults)
+          ? parsed.drawResults.slice(0, 10)
+          : [],
       };
     } catch {
       return null;

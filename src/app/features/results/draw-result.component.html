@@ -25,12 +25,29 @@
     <p class="font-code-md text-code-md text-on-surface-variant mt-4 uppercase">
       &gt;&gt; ALL ENTITIES SUCCESSFULLY ASSIGNED TO CLUSTERS.
     </p>
+    <label
+      class="inline-flex flex-col gap-2 mt-8 text-left font-label-sm text-label-sm text-on-surface-variant tracking-widest uppercase"
+    >
+      Draw History
+      <select
+        class="min-w-72 border border-outline-variant bg-surface-container-lowest px-4 py-3 font-code-md text-code-md text-primary uppercase focus:border-primary-container focus:outline-none"
+        [value]="store.selectedDrawResultId()"
+        (change)="selectDraw($event)"
+      >
+        @for (draw of store.drawResults(); track draw.id) {
+          <option [value]="draw.id">
+            {{ draw.time | date: "dd.MM.yyyy, HH:mm:ss" }} |
+            {{ draw.assignments.length }} persons
+          </option>
+        }
+      </select>
+    </label>
   </div>
 
   <div
     class="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter relative z-10"
   >
-    @if (!store.lastDrawResult()) {
+    @if (!store.selectedDrawResult()) {
       <div
         class="w-full border border-error bg-error-container p-4 text-error font-code-md text-code-md uppercase"
       >

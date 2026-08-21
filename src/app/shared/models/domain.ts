@@ -50,6 +50,14 @@ export interface DrawPlan {
   assignments: Assignment[];
 }
 
+export interface DrawResult {
+  id: string;
+  time: Date;
+  assignments: Assignment[];
+  people: Person[];
+  teams: Team[];
+}
+
 export interface DrawSnapshot {
   people: readonly Person[];
   teams: readonly Team[];
