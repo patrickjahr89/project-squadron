@@ -1,0 +1,200 @@
+<div class="flex-1 overflow-y-auto p-margin relative z-0 scanline-fx h-full">
+  <div class="max-w-container-max mx-auto space-y-gutter h-full">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+      <!-- Card 1 -->
+      <div
+        class="border border-outline-variant bg-surface-container-low p-4 flex flex-col justify-between min-h-[120px] relative"
+      >
+        <div class="crosshair-container"></div>
+        <div
+          class="flex justify-between items-center border-b border-outline-variant pb-2 mb-4"
+        >
+          <span
+            class="font-label-sm text-label-sm text-on-surface-variant tracking-widest uppercase"
+            >TOTAL PERSONS</span
+          >
+          <span
+            class="material-symbols-outlined text-on-surface-variant text-[18px]"
+            >group</span
+          >
+        </div>
+        <div class="font-headline-lg text-headline-lg text-primary">
+          {{ store.totalPersons() }}
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div
+        class="border border-outline-variant bg-surface-container-low p-4 flex flex-col justify-between min-h-[120px] relative"
+      >
+        <div class="crosshair-container"></div>
+        <div
+          class="flex justify-between items-center border-b border-outline-variant pb-2 mb-4"
+        >
+          <span
+            class="font-label-sm text-label-sm text-on-surface-variant tracking-widest uppercase"
+            >TOTAL TEAMS</span
+          >
+          <span
+            class="material-symbols-outlined text-on-surface-variant text-[18px]"
+            >hub</span
+          >
+        </div>
+        <div class="font-headline-lg text-headline-lg text-primary">
+          {{ store.totalTeams() }}
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div
+        class="border border-outline-variant bg-surface-container-low p-4 flex flex-col justify-between min-h-[120px] relative"
+      >
+        <div class="crosshair-container"></div>
+        <div
+          class="flex justify-between items-center border-b border-outline-variant pb-2 mb-4"
+        >
+          <span
+            class="font-label-sm text-label-sm text-on-surface-variant tracking-widest uppercase"
+            >AVAILABLE SLOTS</span
+          >
+          <span
+            class="material-symbols-outlined text-on-surface-variant text-[18px]"
+            >event_seat</span
+          >
+        </div>
+        <div class="font-headline-lg text-headline-lg text-primary-container">
+          {{ store.availableSlots() }}
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div
+        class="border border-outline-variant bg-surface-container-low p-4 flex flex-col justify-between min-h-[120px] relative"
+      >
+        <div class="crosshair-container"></div>
+        <div
+          class="flex justify-between items-center border-b border-outline-variant pb-2 mb-4"
+        >
+          <span
+            class="font-label-sm text-label-sm text-on-surface-variant tracking-widest uppercase"
+            >ASSIGNED</span
+          >
+          <span
+            class="material-symbols-outlined text-on-surface-variant text-[18px]"
+            >check_circle</span
+          >
+        </div>
+        <div class="font-headline-lg text-headline-lg text-primary">
+          {{ store.assignedPersonsCount() }}
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter mt-gutter">
+      <div
+        class="lg:col-span-2 border border-outline-variant bg-surface-container-highest p-8 flex flex-col items-center justify-center min-h-[300px] relative overflow-hidden"
+      >
+        <div
+          class="absolute inset-0 bg-[linear-gradient(transparent_50%,rgba(0,0,0,0.1)_50%)] bg-[length:100%_4px] pointer-events-none opacity-20"
+        ></div>
+        <div class="crosshair-container"></div>
+
+        <div
+          class="font-label-sm text-label-sm text-on-surface-variant mb-6 tracking-[0.2em] uppercase"
+        >
+          System Status
+        </div>
+
+        <div
+          class="border-2 border-primary-container px-8 py-6 rounded-sm animate-neon-pulse bg-surface-container-lowest text-center"
+        >
+          <div
+            class="font-headline-lg text-headline-lg text-primary-container tracking-tight uppercase"
+          >
+            READY FOR DRAW
+          </div>
+          <div
+            class="font-code-md text-code-md text-primary mt-2 opacity-80 uppercase"
+          >
+            &gt; AWAITING INITIATION SEQUENCE
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="border border-outline-variant bg-surface-container-low p-6 flex flex-col h-full min-h-[300px] relative"
+      >
+        <div class="crosshair-container"></div>
+        <div
+          class="flex items-center border-b border-outline-variant pb-3 mb-6"
+        >
+          <span class="material-symbols-outlined mr-2 text-primary-fixed-dim"
+            >history</span
+          >
+          <span
+            class="font-label-sm text-label-sm text-on-surface-variant tracking-widest uppercase"
+            >LAST DRAW RESULT</span
+          >
+        </div>
+
+        @if (store.lastDrawResult(); as lastDraw) {
+          <div class="flex-1 flex flex-col justify-center space-y-6">
+            <div class="text-center">
+              <div
+                class="font-headline-md text-headline-md text-primary uppercase"
+              >
+                SESSION_RES
+              </div>
+              <div
+                class="font-code-md text-code-md text-on-surface-variant mt-1"
+              >
+                {{ lastDraw.time | date: "HH:mm:ss" }} UTC
+              </div>
+            </div>
+
+            <div
+              class="flex items-center justify-center space-x-4 bg-surface-container-lowest py-4 border border-outline-variant"
+            >
+              <div class="text-center">
+                <div class="font-headline-md text-headline-md text-primary">
+                  {{ lastDraw.persons }}
+                </div>
+                <div
+                  class="font-label-sm text-label-sm text-on-surface-variant uppercase"
+                >
+                  PERSONS
+                </div>
+              </div>
+              <span class="material-symbols-outlined text-primary-container"
+                >arrow_forward</span
+              >
+              <div class="text-center">
+                <div class="font-headline-md text-headline-md text-primary">
+                  {{ lastDraw.teams }}
+                </div>
+                <div
+                  class="font-label-sm text-label-sm text-on-surface-variant uppercase"
+                >
+                  TEAMS
+                </div>
+              </div>
+            </div>
+          </div>
+        } @else {
+          <div
+            class="flex-1 flex flex-col items-center justify-center opacity-50"
+          >
+            <span
+              class="material-symbols-outlined text-4xl text-on-surface-variant mb-2"
+              >find_in_page</span
+            >
+            <span
+              class="font-code-md text-code-md text-on-surface-variant uppercase"
+              >NO PREVIOUS DATA</span
+            >
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

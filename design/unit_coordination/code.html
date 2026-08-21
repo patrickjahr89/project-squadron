@@ -1,554 +1,877 @@
-<!DOCTYPE html>
+<!doctype html>
 
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>CMD_CENTER - Teams</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-        tailwind.config = {
-          darkMode: "class",
-          theme: {
-            extend: {
-              "colors": {
-                      "on-surface": "#e5e2e3",
-                      "primary-container": "#00ffc2",
-                      "on-tertiary-container": "#006e7e",
-                      "on-primary": "#003828",
-                      "surface-tint": "#00e1ab",
-                      "on-error": "#690005",
-                      "on-secondary-container": "#480063",
-                      "on-secondary": "#520071",
-                      "primary-fixed-dim": "#00e1ab",
-                      "on-secondary-fixed-variant": "#74009f",
-                      "on-tertiary-fixed": "#001f25",
-                      "tertiary": "#fcfeff",
-                      "on-tertiary-fixed-variant": "#004e5a",
-                      "outline-variant": "#3a4a43",
-                      "on-secondary-fixed": "#320047",
-                      "surface-container-highest": "#353436",
-                      "outline": "#83958c",
-                      "inverse-on-surface": "#313031",
-                      "on-surface-variant": "#b9cbc1",
-                      "secondary-container": "#cf5cff",
-                      "error-container": "#93000a",
-                      "on-primary-fixed": "#002116",
-                      "surface-container-low": "#1c1b1c",
-                      "secondary-fixed": "#f8d8ff",
-                      "on-error-container": "#ffdad6",
-                      "surface-bright": "#3a393a",
-                      "primary": "#fbfffa",
-                      "secondary-fixed-dim": "#ecb2ff",
-                      "secondary": "#ecb2ff",
-                      "tertiary-fixed-dim": "#00daf8",
-                      "on-tertiary": "#00363f",
-                      "on-primary-fixed-variant": "#00513c",
-                      "error": "#ffb4ab",
-                      "inverse-primary": "#006c50",
-                      "surface-container-lowest": "#0e0e0f",
-                      "on-primary-container": "#007255",
-                      "inverse-surface": "#e5e2e3",
-                      "surface-variant": "#353436",
-                      "background": "#131314",
-                      "surface-dim": "#131314",
-                      "tertiary-fixed": "#a5eeff",
-                      "on-background": "#e5e2e3",
-                      "surface": "#131314",
-                      "surface-container": "#201f20",
-                      "surface-container-high": "#2a2a2b",
-                      "primary-fixed": "#36ffc4",
-                      "tertiary-container": "#9fedff"
-              },
-              "borderRadius": {
-                      "DEFAULT": "0.25rem",
-                      "lg": "0.5rem",
-                      "xl": "0.75rem",
-                      "full": "9999px"
-              },
-              "spacing": {
-                      "container-max": "1440px",
-                      "unit": "4px",
-                      "margin": "24px",
-                      "gutter": "16px"
-              },
-              "fontFamily": {
-                      "headline-md": [
-                              "JetBrains Mono"
-                      ],
-                      "body-lg": [
-                              "Inter"
-                      ],
-                      "body-md": [
-                              "Inter"
-                      ],
-                      "code-md": [
-                              "JetBrains Mono"
-                      ],
-                      "headline-lg": [
-                              "JetBrains Mono"
-                      ],
-                      "label-sm": [
-                              "JetBrains Mono"
-                      ]
-              },
-              "fontSize": {
-                      "headline-md": [
-                              "24px",
-                              {
-                                      "lineHeight": "1.3",
-                                      "fontWeight": "600"
-                              }
-                      ],
-                      "body-lg": [
-                              "18px",
-                              {
-                                      "lineHeight": "1.6",
-                                      "fontWeight": "400"
-                              }
-                      ],
-                      "body-md": [
-                              "16px",
-                              {
-                                      "lineHeight": "1.5",
-                                      "fontWeight": "400"
-                              }
-                      ],
-                      "code-md": [
-                              "14px",
-                              {
-                                      "lineHeight": "1.5",
-                                      "fontWeight": "400"
-                              }
-                      ],
-                      "headline-lg": [
-                              "32px",
-                              {
-                                      "lineHeight": "1.2",
-                                      "letterSpacing": "-0.02em",
-                                      "fontWeight": "700"
-                              }
-                      ],
-                      "label-sm": [
-                              "12px",
-                              {
-                                      "lineHeight": "1",
-                                      "letterSpacing": "0.05em",
-                                      "fontWeight": "500"
-                              }
-                      ]
-              }
-      },
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>CMD_CENTER - Teams</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-surface": "#e5e2e3",
+              "primary-container": "#00ffc2",
+              "on-tertiary-container": "#006e7e",
+              "on-primary": "#003828",
+              "surface-tint": "#00e1ab",
+              "on-error": "#690005",
+              "on-secondary-container": "#480063",
+              "on-secondary": "#520071",
+              "primary-fixed-dim": "#00e1ab",
+              "on-secondary-fixed-variant": "#74009f",
+              "on-tertiary-fixed": "#001f25",
+              tertiary: "#fcfeff",
+              "on-tertiary-fixed-variant": "#004e5a",
+              "outline-variant": "#3a4a43",
+              "on-secondary-fixed": "#320047",
+              "surface-container-highest": "#353436",
+              outline: "#83958c",
+              "inverse-on-surface": "#313031",
+              "on-surface-variant": "#b9cbc1",
+              "secondary-container": "#cf5cff",
+              "error-container": "#93000a",
+              "on-primary-fixed": "#002116",
+              "surface-container-low": "#1c1b1c",
+              "secondary-fixed": "#f8d8ff",
+              "on-error-container": "#ffdad6",
+              "surface-bright": "#3a393a",
+              primary: "#fbfffa",
+              "secondary-fixed-dim": "#ecb2ff",
+              secondary: "#ecb2ff",
+              "tertiary-fixed-dim": "#00daf8",
+              "on-tertiary": "#00363f",
+              "on-primary-fixed-variant": "#00513c",
+              error: "#ffb4ab",
+              "inverse-primary": "#006c50",
+              "surface-container-lowest": "#0e0e0f",
+              "on-primary-container": "#007255",
+              "inverse-surface": "#e5e2e3",
+              "surface-variant": "#353436",
+              background: "#131314",
+              "surface-dim": "#131314",
+              "tertiary-fixed": "#a5eeff",
+              "on-background": "#e5e2e3",
+              surface: "#131314",
+              "surface-container": "#201f20",
+              "surface-container-high": "#2a2a2b",
+              "primary-fixed": "#36ffc4",
+              "tertiary-container": "#9fedff",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "container-max": "1440px",
+              unit: "4px",
+              margin: "24px",
+              gutter: "16px",
+            },
+            fontFamily: {
+              "headline-md": ["JetBrains Mono"],
+              "body-lg": ["Inter"],
+              "body-md": ["Inter"],
+              "code-md": ["JetBrains Mono"],
+              "headline-lg": ["JetBrains Mono"],
+              "label-sm": ["JetBrains Mono"],
+            },
+            fontSize: {
+              "headline-md": [
+                "24px",
+                {
+                  lineHeight: "1.3",
+                  fontWeight: "600",
+                },
+              ],
+              "body-lg": [
+                "18px",
+                {
+                  lineHeight: "1.6",
+                  fontWeight: "400",
+                },
+              ],
+              "body-md": [
+                "16px",
+                {
+                  lineHeight: "1.5",
+                  fontWeight: "400",
+                },
+              ],
+              "code-md": [
+                "14px",
+                {
+                  lineHeight: "1.5",
+                  fontWeight: "400",
+                },
+              ],
+              "headline-lg": [
+                "32px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "label-sm": [
+                "12px",
+                {
+                  lineHeight: "1",
+                  letterSpacing: "0.05em",
+                  fontWeight: "500",
+                },
+              ],
+            },
           },
-        }
+        },
+      };
     </script>
-<style>
-        /* Immersive Textures & Glitch Effects */
-        body {
-            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-            background-size: 8px 8px;
-        }
-        
-        .scanline {
-            position: relative;
-            overflow: hidden;
-        }
-        .scanline::before {
-            content: " ";
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            z-index: 10;
-            background-size: 100% 2px, 3px 100%;
-            pointer-events: none;
-            opacity: 0.2;
-        }
+    <style>
+      /* Immersive Textures & Glitch Effects */
+      body {
+        background-image: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.05) 1px,
+          transparent 1px
+        );
+        background-size: 8px 8px;
+      }
 
-        .neon-glow {
-            box-shadow: 0 0 10px rgba(0, 255, 194, 0.3);
-        }
-        
-        .neon-glow-red {
-            box-shadow: 0 0 10px rgba(255, 180, 171, 0.5); /* using error color */
-        }
+      .scanline {
+        position: relative;
+        overflow: hidden;
+      }
+      .scanline::before {
+        content: " ";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background:
+          linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+          linear-gradient(
+            90deg,
+            rgba(255, 0, 0, 0.06),
+            rgba(0, 255, 0, 0.02),
+            rgba(0, 0, 255, 0.06)
+          );
+        z-index: 10;
+        background-size:
+          100% 2px,
+          3px 100%;
+        pointer-events: none;
+        opacity: 0.2;
+      }
 
-        /* Progress Bar styling */
-        .progress-segment {
-            flex: 1;
-            height: 8px;
-            margin-right: 2px;
-            border: 1px solid #3a4a43; /* outline-variant */
-            background-color: transparent;
-        }
-        .progress-segment:last-child {
-            margin-right: 0;
-        }
-        .progress-segment.filled {
-            background-color: #00ffc2; /* primary-container */
-            border-color: #00ffc2;
-            box-shadow: 0 0 5px rgba(0, 255, 194, 0.5);
-        }
-        .progress-segment.filled-red {
-             background-color: #ffb4ab; /* error */
-             border-color: #ffb4ab;
-             box-shadow: 0 0 5px rgba(255, 180, 171, 0.5);
-        }
+      .neon-glow {
+        box-shadow: 0 0 10px rgba(0, 255, 194, 0.3);
+      }
 
-        /* Crosshair Accents */
-        .crosshair-container {
-            position: relative;
-        }
-        .crosshair-container::before, .crosshair-container::after {
-            content: '';
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            border: 1px solid #3a4a43; /* outline-variant */
-            pointer-events: none;
-        }
-        .crosshair-container::before {
-            top: -1px;
-            left: -1px;
-            border-right: none;
-            border-bottom: none;
-        }
-        .crosshair-container::after {
-            bottom: -1px;
-            right: -1px;
-            border-left: none;
-            border-top: none;
-        }
-        
-        /* Terminal input style */
-        .terminal-input-wrapper {
-            position: relative;
-            background: linear-gradient(to right, rgba(255,255,255,0.02), transparent);
-        }
-        
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0e0e0f; 
-            border-left: 1px solid #3a4a43;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #353436; 
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #00ffc2; 
-        }
+      .neon-glow-red {
+        box-shadow: 0 0 10px rgba(255, 180, 171, 0.5); /* using error color */
+      }
+
+      /* Progress Bar styling */
+      .progress-segment {
+        flex: 1;
+        height: 8px;
+        margin-right: 2px;
+        border: 1px solid #3a4a43; /* outline-variant */
+        background-color: transparent;
+      }
+      .progress-segment:last-child {
+        margin-right: 0;
+      }
+      .progress-segment.filled {
+        background-color: #00ffc2; /* primary-container */
+        border-color: #00ffc2;
+        box-shadow: 0 0 5px rgba(0, 255, 194, 0.5);
+      }
+      .progress-segment.filled-red {
+        background-color: #ffb4ab; /* error */
+        border-color: #ffb4ab;
+        box-shadow: 0 0 5px rgba(255, 180, 171, 0.5);
+      }
+
+      /* Crosshair Accents */
+      .crosshair-container {
+        position: relative;
+      }
+      .crosshair-container::before,
+      .crosshair-container::after {
+        content: "";
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        border: 1px solid #3a4a43; /* outline-variant */
+        pointer-events: none;
+      }
+      .crosshair-container::before {
+        top: -1px;
+        left: -1px;
+        border-right: none;
+        border-bottom: none;
+      }
+      .crosshair-container::after {
+        bottom: -1px;
+        right: -1px;
+        border-left: none;
+        border-top: none;
+      }
+
+      /* Terminal input style */
+      .terminal-input-wrapper {
+        position: relative;
+        background: linear-gradient(
+          to right,
+          rgba(255, 255, 255, 0.02),
+          transparent
+        );
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0e0e0f;
+        border-left: 1px solid #3a4a43;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #353436;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #00ffc2;
+      }
     </style>
-</head>
-<body class="bg-background text-on-surface h-screen flex overflow-hidden antialiased font-body-md selection:bg-primary-container selection:text-on-primary-container">
-<!-- JSON Component: SideNavBar -->
-<nav class="bg-surface dark:bg-surface text-primary dark:text-primary Headlines: font-headline-md text-headline-md. Body: font-body-md text-body-md. Labels: font-label-sm text-label-sm. h-screen w-64 border-r border-outline-variant border-r border-outline-variant bg-surface-container-lowest flex flex-col h-full py-margin transition-all duration-200 ease-in-out hidden md:flex z-20 shrink-0">
-<div class="px-6 mb-8 flex items-center space-x-3">
-<div class="w-10 h-10 border border-primary-container p-0.5">
-<img alt="System Operator Avatar" class="w-full h-full object-cover grayscale opacity-80" data-alt="A highly detailed avatar image suitable for a system operator in a sci-fi command center. The image features sharp angles, glowing neon accents in cyan and magenta, and a dark, gritty background reminiscent of classic cyberpunk aesthetics. The lighting is dramatic and directional, highlighting the technical details." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrsinqkYV7pDibgTe_zeYGFwM-THt_6PKfmRUDe3oLXyq7nBW5zn_j3n5lWRJ8AJIiYvXFMXq-ljzx3ZcL0l_zfyztaIoKtBKr82dONXrzl_529Z4pJPcw3JM-L0KyAtuw8-PkxAwLir7hbxAru3W9FXZumwRGfL_wrntjcvJHb1dLmI9F2bRhwokQTAWm3U2v2zJp9OQRlalrr2fAIR-jTN5yWOCo2Tn7rtEQT8QaLUsWfCjkYuqW"/>
-</div>
-<div>
-<div class="font-headline-md text-headline-md font-bold text-primary dark:text-primary tracking-tighter uppercase">CMD_CENTER</div>
-<div class="font-label-sm text-label-sm text-on-surface-variant font-code-md">v2.0.4-stable</div>
-</div>
-</div>
-<div class="flex-1 overflow-y-auto mt-4 space-y-1">
-<a class="flex items-center space-x-3 py-3 text-on-surface-variant dark:text-on-surface-variant pl-4 hover:bg-surface-container-highest dark:hover:bg-surface-container-highest hover:text-primary transition-all duration-200 ease-in-out group" href="#">
-<span class="material-symbols-outlined text-lg group-hover:text-primary-container transition-colors">dashboard</span>
-<span class="font-label-sm text-label-sm uppercase tracking-widest">Dashboard</span>
-</a>
-<a class="flex items-center space-x-3 py-3 text-on-surface-variant dark:text-on-surface-variant pl-4 hover:bg-surface-container-highest dark:hover:bg-surface-container-highest hover:text-primary transition-all duration-200 ease-in-out group" href="#">
-<span class="material-symbols-outlined text-lg group-hover:text-primary-container transition-colors">groups</span>
-<span class="font-label-sm text-label-sm uppercase tracking-widest">People</span>
-</a>
-<a class="flex items-center space-x-3 py-3 text-primary dark:text-primary font-bold border-l-2 border-primary-container pl-4 transition-all duration-200 ease-in-out bg-surface-container-highest bg-opacity-30" href="#">
-<span class="material-symbols-outlined text-lg text-primary-container" style="font-variation-settings: 'FILL' 1;">hub</span>
-<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary-container">Teams</span>
-</a>
-<a class="flex items-center space-x-3 py-3 text-on-surface-variant dark:text-on-surface-variant pl-4 hover:bg-surface-container-highest dark:hover:bg-surface-container-highest hover:text-primary transition-all duration-200 ease-in-out group" href="#">
-<span class="material-symbols-outlined text-lg group-hover:text-primary-container transition-colors">shuffle</span>
-<span class="font-label-sm text-label-sm uppercase tracking-widest">Draw</span>
-</a>
-<a class="flex items-center space-x-3 py-3 text-on-surface-variant dark:text-on-surface-variant pl-4 hover:bg-surface-container-highest dark:hover:bg-surface-container-highest hover:text-primary transition-all duration-200 ease-in-out group" href="#">
-<span class="material-symbols-outlined text-lg group-hover:text-primary-container transition-colors">analytics</span>
-<span class="font-label-sm text-label-sm uppercase tracking-widest">Results</span>
-</a>
-</div>
-<div class="px-6 mt-8 mb-6">
-<button class="w-full bg-[#121214] border border-primary-container text-primary-container font-label-sm text-label-sm py-3 uppercase tracking-widest hover:bg-primary-container hover:text-on-primary-container transition-colors duration-200 neon-glow flex items-center justify-center space-x-2">
-<span class="material-symbols-outlined text-sm">play_arrow</span>
-<span>INITIATE_DRAW</span>
-</button>
-</div>
-<div class="border-t border-outline-variant pt-4 space-y-1">
-<a class="flex items-center space-x-3 py-2 text-on-surface-variant dark:text-on-surface-variant pl-4 hover:bg-surface-container-highest dark:hover:bg-surface-container-highest hover:text-primary transition-all duration-200 ease-in-out group" href="#">
-<span class="material-symbols-outlined text-sm group-hover:text-primary-container transition-colors">settings</span>
-<span class="font-label-sm text-label-sm uppercase">Settings</span>
-</a>
-<a class="flex items-center space-x-3 py-2 text-on-surface-variant dark:text-on-surface-variant pl-4 hover:bg-surface-container-highest dark:hover:bg-surface-container-highest hover:text-primary transition-all duration-200 ease-in-out group" href="#">
-<span class="material-symbols-outlined text-sm group-hover:text-primary-container transition-colors">terminal</span>
-<span class="font-label-sm text-label-sm uppercase">System Status</span>
-</a>
-</div>
-</nav>
-<!-- Main Content Wrapper -->
-<div class="flex-1 flex flex-col min-w-0 bg-background scanline z-10 relative">
-<!-- JSON Component: TopAppBar -->
-<header class="bg-surface dark:bg-surface text-primary dark:text-primary Headlines: font-headline-lg text-headline-lg. Labels: font-label-sm text-label-sm. w-full h-16 border-b border-outline-variant border-b border-outline-variant bg-surface-container shadow-[0_0_10px_rgba(0,255,194,0.1)] flex justify-between items-center px-margin w-full cursor-pointer active:opacity-80 shrink-0">
-<div class="flex items-center space-x-4">
-<!-- Mobile Menu Button (mock) -->
-<button class="md:hidden text-on-surface-variant hover:text-primary-fixed-dim transition-colors p-2">
-<span class="material-symbols-outlined">menu</span>
-</button>
-<div class="font-headline-md text-headline-md text-primary-container dark:text-primary-container font-bold uppercase tracking-tight hidden md:block">
-                    TEAM_RANDOMIZER_OS
+  </head>
+  <body
+    class="bg-background text-on-surface h-screen flex overflow-hidden antialiased font-body-md selection:bg-primary-container selection:text-on-primary-container"
+  >
+    <!-- JSON Component: SideNavBar -->
+    <nav
+      class="bg-surface dark:bg-surface text-primary dark:text-primary Headlines: font-headline-md text-headline-md. Body: font-body-md text-body-md. Labels: font-label-sm text-label-sm. h-screen w-64 border-r border-outline-variant border-r border-outline-variant bg-surface-container-lowest flex flex-col h-full py-margin transition-all duration-200 ease-in-out hidden md:flex z-20 shrink-0"
+    >
+      <div class="px-6 mb-8 flex items-center space-x-3">
+        <div class="w-10 h-10 border border-primary-container p-0.5">
+          <img
+            alt="System Operator Avatar"
+            class="w-full h-full object-cover grayscale opacity-80"
+            data-alt="A highly detailed avatar image suitable for a system operator in a sci-fi command center. The image features sharp angles, glowing neon accents in cyan and magenta, and a dark, gritty background reminiscent of classic cyberpunk aesthetics. The lighting is dramatic and directional, highlighting the technical details."
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrsinqkYV7pDibgTe_zeYGFwM-THt_6PKfmRUDe3oLXyq7nBW5zn_j3n5lWRJ8AJIiYvXFMXq-ljzx3ZcL0l_zfyztaIoKtBKr82dONXrzl_529Z4pJPcw3JM-L0KyAtuw8-PkxAwLir7hbxAru3W9FXZumwRGfL_wrntjcvJHb1dLmI9F2bRhwokQTAWm3U2v2zJp9OQRlalrr2fAIR-jTN5yWOCo2Tn7rtEQT8QaLUsWfCjkYuqW"
+          />
+        </div>
+        <div>
+          <div
+            class="font-headline-md text-headline-md font-bold text-primary dark:text-primary tracking-tighter uppercase"
+          >
+            CMD_CENTER
+          </div>
+          <div
+            class="font-label-sm text-label-sm text-on-surface-variant font-code-md"
+          >
+            v2.0.4-stable
+          </div>
+        </div>
+      </div>
+      <div class="flex-1 overflow-y-auto mt-4 space-y-1">
+        <a
+          class="flex items-center space-x-3 py-3 text-on-surface-variant dark:text-on-surface-variant pl-4 hover:bg-surface-container-highest dark:hover:bg-surface-container-highest hover:text-primary transition-all duration-200 ease-in-out group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-lg group-hover:text-primary-container transition-colors"
+            >dashboard</span
+          >
+          <span class="font-label-sm text-label-sm uppercase tracking-widest"
+            >Dashboard</span
+          >
+        </a>
+        <a
+          class="flex items-center space-x-3 py-3 text-on-surface-variant dark:text-on-surface-variant pl-4 hover:bg-surface-container-highest dark:hover:bg-surface-container-highest hover:text-primary transition-all duration-200 ease-in-out group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-lg group-hover:text-primary-container transition-colors"
+            >groups</span
+          >
+          <span class="font-label-sm text-label-sm uppercase tracking-widest"
+            >People</span
+          >
+        </a>
+        <a
+          class="flex items-center space-x-3 py-3 text-primary dark:text-primary font-bold border-l-2 border-primary-container pl-4 transition-all duration-200 ease-in-out bg-surface-container-highest bg-opacity-30"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-lg text-primary-container"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >hub</span
+          >
+          <span
+            class="font-label-sm text-label-sm uppercase tracking-widest text-primary-container"
+            >Teams</span
+          >
+        </a>
+        <a
+          class="flex items-center space-x-3 py-3 text-on-surface-variant dark:text-on-surface-variant pl-4 hover:bg-surface-container-highest dark:hover:bg-surface-container-highest hover:text-primary transition-all duration-200 ease-in-out group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-lg group-hover:text-primary-container transition-colors"
+            >shuffle</span
+          >
+          <span class="font-label-sm text-label-sm uppercase tracking-widest"
+            >Draw</span
+          >
+        </a>
+        <a
+          class="flex items-center space-x-3 py-3 text-on-surface-variant dark:text-on-surface-variant pl-4 hover:bg-surface-container-highest dark:hover:bg-surface-container-highest hover:text-primary transition-all duration-200 ease-in-out group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-lg group-hover:text-primary-container transition-colors"
+            >analytics</span
+          >
+          <span class="font-label-sm text-label-sm uppercase tracking-widest"
+            >Results</span
+          >
+        </a>
+      </div>
+      <div class="px-6 mt-8 mb-6">
+        <button
+          class="w-full bg-[#121214] border border-primary-container text-primary-container font-label-sm text-label-sm py-3 uppercase tracking-widest hover:bg-primary-container hover:text-on-primary-container transition-colors duration-200 neon-glow flex items-center justify-center space-x-2"
+        >
+          <span class="material-symbols-outlined text-sm">play_arrow</span>
+          <span>INITIATE_DRAW</span>
+        </button>
+      </div>
+      <div class="border-t border-outline-variant pt-4 space-y-1">
+        <a
+          class="flex items-center space-x-3 py-2 text-on-surface-variant dark:text-on-surface-variant pl-4 hover:bg-surface-container-highest dark:hover:bg-surface-container-highest hover:text-primary transition-all duration-200 ease-in-out group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-sm group-hover:text-primary-container transition-colors"
+            >settings</span
+          >
+          <span class="font-label-sm text-label-sm uppercase">Settings</span>
+        </a>
+        <a
+          class="flex items-center space-x-3 py-2 text-on-surface-variant dark:text-on-surface-variant pl-4 hover:bg-surface-container-highest dark:hover:bg-surface-container-highest hover:text-primary transition-all duration-200 ease-in-out group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-sm group-hover:text-primary-container transition-colors"
+            >terminal</span
+          >
+          <span class="font-label-sm text-label-sm uppercase"
+            >System Status</span
+          >
+        </a>
+      </div>
+    </nav>
+    <!-- Main Content Wrapper -->
+    <div
+      class="flex-1 flex flex-col min-w-0 bg-background scanline z-10 relative"
+    >
+      <!-- JSON Component: TopAppBar -->
+      <header
+        class="bg-surface dark:bg-surface text-primary dark:text-primary Headlines: font-headline-lg text-headline-lg. Labels: font-label-sm text-label-sm. w-full h-16 border-b border-outline-variant border-b border-outline-variant bg-surface-container shadow-[0_0_10px_rgba(0,255,194,0.1)] flex justify-between items-center px-margin w-full cursor-pointer active:opacity-80 shrink-0"
+      >
+        <div class="flex items-center space-x-4">
+          <!-- Mobile Menu Button (mock) -->
+          <button
+            class="md:hidden text-on-surface-variant hover:text-primary-fixed-dim transition-colors p-2"
+          >
+            <span class="material-symbols-outlined">menu</span>
+          </button>
+          <div
+            class="font-headline-md text-headline-md text-primary-container dark:text-primary-container font-bold uppercase tracking-tight hidden md:block"
+          >
+            TEAM_FORGE
+          </div>
+        </div>
+        <div
+          class="hidden lg:flex items-center space-x-6 border-x border-outline-variant px-6 h-full bg-[#121214]"
+        >
+          <span
+            class="text-on-surface-variant font-code-md text-code-md flex items-center space-x-2"
+          >
+            <span
+              class="w-2 h-2 rounded-full bg-primary-container animate-pulse"
+            ></span>
+            <span>SESSION: 04:20:11</span>
+          </span>
+          <span
+            class="text-primary-container font-bold font-code-md text-code-md flex items-center space-x-2"
+          >
+            <span class="material-symbols-outlined text-sm">check_circle</span>
+            <span>STATUS: SYSTEM READY</span>
+          </span>
+        </div>
+        <div class="flex items-center space-x-4">
+          <div
+            class="flex items-center space-x-2 border-r border-outline-variant pr-4 mr-2"
+          >
+            <button
+              class="p-2 text-on-surface-variant font-code-md hover:text-primary-fixed-dim transition-colors"
+            >
+              <span class="material-symbols-outlined"
+                >notifications_active</span
+              >
+            </button>
+            <button
+              class="p-2 text-on-surface-variant font-code-md hover:text-primary-fixed-dim transition-colors"
+            >
+              <span class="material-symbols-outlined">help_outline</span>
+            </button>
+          </div>
+          <button
+            class="hidden sm:flex border border-primary-container px-4 py-1.5 text-primary-container font-label-sm text-label-sm hover:bg-primary-container hover:text-on-primary-container transition-colors uppercase neon-glow items-center space-x-2"
+          >
+            <span class="material-symbols-outlined text-sm">add</span>
+            <span>NEW SESSION</span>
+          </button>
+          <div
+            class="w-8 h-8 rounded-full border border-outline-variant overflow-hidden cursor-pointer hover:border-primary-container transition-colors ml-2"
+          >
+            <img
+              alt="User Profile"
+              class="w-full h-full object-cover"
+              data-alt="A small, stylized profile picture in a cyberpunk style. Features a person with futuristic implants or eyewear against a dark, neon-lit city backdrop. The colors are muted cyan and deep blues, fitting a dark mode technical interface."
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrc6GnTQjGQOXSBgviOBrTTk0dArAxTc54gaDfJ2iu-qI6RBneEba4trGW6AbxcU_RJj-vJrJXqn7d-aJT6oHKYPIH_DN39PzB67ueVXvkWjZjtZpeWW5q3x3yODwewOKkqIhlCc2YkoTKd49a4epGY78CJEeAPLgXoMX1AAgxYRkvc2P-YBrNj4lJReGhjdGBG_mtXqYoFToZQxh56BASCxOYfBzxaAVJ_fKNeHUiX1wlxmmIrcin"
+            />
+          </div>
+        </div>
+      </header>
+      <!-- Canvas Area -->
+      <main class="flex-1 overflow-y-auto p-margin relative">
+        <!-- Header Section -->
+        <div
+          class="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-outline-variant"
+        >
+          <div>
+            <h1
+              class="font-headline-lg text-headline-lg text-primary uppercase mb-2 flex items-center"
+            >
+              <span class="text-primary-container mr-3 font-normal">&gt;_</span
+              >TEAM DIRECTORY
+            </h1>
+            <p
+              class="font-code-md text-code-md text-on-surface-variant opacity-80"
+            >
+              Total active clusters: 4 | Operatives assigned: 16/20
+            </p>
+          </div>
+          <div class="mt-4 md:mt-0 flex items-center space-x-4">
+            <!-- Search Input (Terminal Style) -->
+            <div
+              class="terminal-input-wrapper border border-outline-variant px-3 py-2 flex items-center w-64 focus-within:border-primary-container transition-colors"
+            >
+              <span class="text-primary-container font-code-md mr-2">$</span>
+              <input
+                class="bg-transparent border-none outline-none text-on-surface font-code-md text-code-md w-full focus:ring-0 placeholder-on-surface-variant/50"
+                placeholder="grep 'team_name'"
+                type="text"
+              />
+              <span
+                class="material-symbols-outlined text-on-surface-variant text-sm ml-2"
+                >search</span
+              >
+            </div>
+            <button
+              class="bg-[#121214] border border-primary-container text-primary-container font-label-sm text-label-sm px-4 py-2.5 uppercase tracking-widest hover:bg-primary-container hover:text-on-primary-container transition-colors duration-200 neon-glow flex items-center whitespace-nowrap"
+            >
+              <span class="material-symbols-outlined text-sm mr-2"
+                >add_box</span
+              >
+              CREATE NEW TEAM
+            </button>
+          </div>
+        </div>
+        <!-- Bento Grid Layout for Teams -->
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter"
+        >
+          <!-- Card: Team Alpha (Full) -->
+          <div
+            class="bg-[#121214] border border-outline-variant crosshair-container flex flex-col h-full hover:border-primary-container transition-colors group"
+          >
+            <!-- Header Strip -->
+            <div
+              class="h-8 border-b border-outline-variant bg-surface-container-low flex justify-between items-center px-3 group-hover:bg-[#1c1c1f] transition-colors"
+            >
+              <span
+                class="font-label-sm text-label-sm text-primary uppercase tracking-widest"
+                >TEAM ALPHA</span
+              >
+              <div class="flex items-center space-x-2">
+                <span
+                  class="font-code-md text-[10px] text-error font-bold tracking-wider"
+                  >FULL</span
+                >
+                <span
+                  class="w-1.5 h-1.5 rounded-full bg-error animate-pulse neon-glow-red"
+                ></span>
+              </div>
+            </div>
+            <!-- Body -->
+            <div class="p-4 flex-1 flex flex-col">
+              <div class="flex justify-between items-end mb-2">
+                <span class="font-code-md text-code-md text-on-surface-variant"
+                  >MEMBER COUNT</span
+                >
+                <span
+                  class="font-headline-md text-body-lg text-primary font-bold"
+                  >5 / 5</span
+                >
+              </div>
+              <!-- Console Loading Bar -->
+              <div class="flex w-full mb-6">
+                <div class="progress-segment filled-red"></div>
+                <div class="progress-segment filled-red"></div>
+                <div class="progress-segment filled-red"></div>
+                <div class="progress-segment filled-red"></div>
+                <div class="progress-segment filled-red"></div>
+              </div>
+              <!-- Mini Roster -->
+              <div class="space-y-2 mt-auto">
+                <div
+                  class="text-[10px] font-label-sm text-on-surface-variant border-b border-outline-variant pb-1 mb-2"
+                >
+                  OPERATIVES LIST
                 </div>
-</div>
-<div class="hidden lg:flex items-center space-x-6 border-x border-outline-variant px-6 h-full bg-[#121214]">
-<span class="text-on-surface-variant font-code-md text-code-md flex items-center space-x-2">
-<span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
-<span>SESSION: 04:20:11</span>
-</span>
-<span class="text-primary-container font-bold font-code-md text-code-md flex items-center space-x-2">
-<span class="material-symbols-outlined text-sm">check_circle</span>
-<span>STATUS: SYSTEM READY</span>
-</span>
-</div>
-<div class="flex items-center space-x-4">
-<div class="flex items-center space-x-2 border-r border-outline-variant pr-4 mr-2">
-<button class="p-2 text-on-surface-variant font-code-md hover:text-primary-fixed-dim transition-colors">
-<span class="material-symbols-outlined">notifications_active</span>
-</button>
-<button class="p-2 text-on-surface-variant font-code-md hover:text-primary-fixed-dim transition-colors">
-<span class="material-symbols-outlined">help_outline</span>
-</button>
-</div>
-<button class="hidden sm:flex border border-primary-container px-4 py-1.5 text-primary-container font-label-sm text-label-sm hover:bg-primary-container hover:text-on-primary-container transition-colors uppercase neon-glow items-center space-x-2">
-<span class="material-symbols-outlined text-sm">add</span>
-<span>NEW SESSION</span>
-</button>
-<div class="w-8 h-8 rounded-full border border-outline-variant overflow-hidden cursor-pointer hover:border-primary-container transition-colors ml-2">
-<img alt="User Profile" class="w-full h-full object-cover" data-alt="A small, stylized profile picture in a cyberpunk style. Features a person with futuristic implants or eyewear against a dark, neon-lit city backdrop. The colors are muted cyan and deep blues, fitting a dark mode technical interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrc6GnTQjGQOXSBgviOBrTTk0dArAxTc54gaDfJ2iu-qI6RBneEba4trGW6AbxcU_RJj-vJrJXqn7d-aJT6oHKYPIH_DN39PzB67ueVXvkWjZjtZpeWW5q3x3yODwewOKkqIhlCc2YkoTKd49a4epGY78CJEeAPLgXoMX1AAgxYRkvc2P-YBrNj4lJReGhjdGBG_mtXqYoFToZQxh56BASCxOYfBzxaAVJ_fKNeHUiX1wlxmmIrcin"/>
-</div>
-</div>
-</header>
-<!-- Canvas Area -->
-<main class="flex-1 overflow-y-auto p-margin relative">
-<!-- Header Section -->
-<div class="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-outline-variant">
-<div>
-<h1 class="font-headline-lg text-headline-lg text-primary uppercase mb-2 flex items-center">
-<span class="text-primary-container mr-3 font-normal">&gt;_</span>TEAM DIRECTORY
-                    </h1>
-<p class="font-code-md text-code-md text-on-surface-variant opacity-80">
-                        Total active clusters: 4 | Operatives assigned: 16/20
-                    </p>
-</div>
-<div class="mt-4 md:mt-0 flex items-center space-x-4">
-<!-- Search Input (Terminal Style) -->
-<div class="terminal-input-wrapper border border-outline-variant px-3 py-2 flex items-center w-64 focus-within:border-primary-container transition-colors">
-<span class="text-primary-container font-code-md mr-2">$</span>
-<input class="bg-transparent border-none outline-none text-on-surface font-code-md text-code-md w-full focus:ring-0 placeholder-on-surface-variant/50" placeholder="grep 'team_name'" type="text"/>
-<span class="material-symbols-outlined text-on-surface-variant text-sm ml-2">search</span>
-</div>
-<button class="bg-[#121214] border border-primary-container text-primary-container font-label-sm text-label-sm px-4 py-2.5 uppercase tracking-widest hover:bg-primary-container hover:text-on-primary-container transition-colors duration-200 neon-glow flex items-center whitespace-nowrap">
-<span class="material-symbols-outlined text-sm mr-2">add_box</span>
-                        CREATE NEW TEAM
-                    </button>
-</div>
-</div>
-<!-- Bento Grid Layout for Teams -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter">
-<!-- Card: Team Alpha (Full) -->
-<div class="bg-[#121214] border border-outline-variant crosshair-container flex flex-col h-full hover:border-primary-container transition-colors group">
-<!-- Header Strip -->
-<div class="h-8 border-b border-outline-variant bg-surface-container-low flex justify-between items-center px-3 group-hover:bg-[#1c1c1f] transition-colors">
-<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">TEAM ALPHA</span>
-<div class="flex items-center space-x-2">
-<span class="font-code-md text-[10px] text-error font-bold tracking-wider">FULL</span>
-<span class="w-1.5 h-1.5 rounded-full bg-error animate-pulse neon-glow-red"></span>
-</div>
-</div>
-<!-- Body -->
-<div class="p-4 flex-1 flex flex-col">
-<div class="flex justify-between items-end mb-2">
-<span class="font-code-md text-code-md text-on-surface-variant">MEMBER COUNT</span>
-<span class="font-headline-md text-body-lg text-primary font-bold">5 / 5</span>
-</div>
-<!-- Console Loading Bar -->
-<div class="flex w-full mb-6">
-<div class="progress-segment filled-red"></div>
-<div class="progress-segment filled-red"></div>
-<div class="progress-segment filled-red"></div>
-<div class="progress-segment filled-red"></div>
-<div class="progress-segment filled-red"></div>
-</div>
-<!-- Mini Roster -->
-<div class="space-y-2 mt-auto">
-<div class="text-[10px] font-label-sm text-on-surface-variant border-b border-outline-variant pb-1 mb-2">OPERATIVES LIST</div>
-<div class="flex items-center space-x-2 font-code-md text-code-md text-on-surface">
-<span class="text-primary-container">01</span><span>J. Doe [LDR]</span>
-</div>
-<div class="flex items-center space-x-2 font-code-md text-code-md text-on-surface">
-<span class="text-primary-container">02</span><span>S. Smith</span>
-</div>
-<div class="flex items-center space-x-2 font-code-md text-code-md text-on-surface opacity-50">
-<span class="text-on-surface-variant">...</span><span>+3 MORE</span>
-</div>
-</div>
-</div>
-<!-- Action Footer -->
-<div class="border-t border-outline-variant p-2 flex justify-end bg-surface-container-lowest">
-<button class="text-on-surface-variant hover:text-primary-container font-label-sm text-label-sm uppercase p-1 transition-colors flex items-center">
-                             MANAGE <span class="material-symbols-outlined text-[14px] ml-1">chevron_right</span>
-</button>
-</div>
-</div>
-<!-- Card: Team Beta (Partial) -->
-<div class="bg-[#121214] border border-outline-variant crosshair-container flex flex-col h-full hover:border-primary-container transition-colors group">
-<div class="h-8 border-b border-outline-variant bg-surface-container-low flex justify-between items-center px-3 group-hover:bg-[#1c1c1f] transition-colors">
-<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">TEAM BETA</span>
-<div class="flex items-center space-x-2">
-<span class="font-code-md text-[10px] text-primary-container tracking-wider">ACTIVE</span>
-<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
-</div>
-</div>
-<div class="p-4 flex-1 flex flex-col">
-<div class="flex justify-between items-end mb-2">
-<span class="font-code-md text-code-md text-on-surface-variant">MEMBER COUNT</span>
-<span class="font-headline-md text-body-lg text-primary font-bold">3 / 5</span>
-</div>
-<div class="flex w-full mb-6">
-<div class="progress-segment filled"></div>
-<div class="progress-segment filled"></div>
-<div class="progress-segment filled"></div>
-<div class="progress-segment"></div>
-<div class="progress-segment"></div>
-</div>
-<div class="space-y-2 mt-auto">
-<div class="text-[10px] font-label-sm text-on-surface-variant border-b border-outline-variant pb-1 mb-2">OPERATIVES LIST</div>
-<div class="flex items-center space-x-2 font-code-md text-code-md text-on-surface">
-<span class="text-primary-container">01</span><span>A. Wong [LDR]</span>
-</div>
-<div class="flex items-center space-x-2 font-code-md text-code-md text-on-surface">
-<span class="text-primary-container">02</span><span>M. Chen</span>
-</div>
-<div class="flex items-center space-x-2 font-code-md text-code-md text-on-surface">
-<span class="text-primary-container">03</span><span>B. Allen</span>
-</div>
-<!-- Empty Slot -->
-<div class="border border-dashed border-outline-variant p-1 text-center mt-2">
-<span class="font-code-md text-[10px] text-on-surface-variant opacity-50">READY FOR INPUT...</span>
-</div>
-</div>
-</div>
-<div class="border-t border-outline-variant p-2 flex justify-end bg-surface-container-lowest">
-<button class="text-on-surface-variant hover:text-primary-container font-label-sm text-label-sm uppercase p-1 transition-colors flex items-center">
-                             MANAGE <span class="material-symbols-outlined text-[14px] ml-1">chevron_right</span>
-</button>
-</div>
-</div>
-<!-- Card: Team Gamma (Partial) -->
-<div class="bg-[#121214] border border-outline-variant crosshair-container flex flex-col h-full hover:border-primary-container transition-colors group">
-<div class="h-8 border-b border-outline-variant bg-surface-container-low flex justify-between items-center px-3 group-hover:bg-[#1c1c1f] transition-colors">
-<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">TEAM GAMMA</span>
-<div class="flex items-center space-x-2">
-<span class="font-code-md text-[10px] text-primary-container tracking-wider">ACTIVE</span>
-<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
-</div>
-</div>
-<div class="p-4 flex-1 flex flex-col">
-<div class="flex justify-between items-end mb-2">
-<span class="font-code-md text-code-md text-on-surface-variant">MEMBER COUNT</span>
-<span class="font-headline-md text-body-lg text-primary font-bold">4 / 5</span>
-</div>
-<div class="flex w-full mb-6">
-<div class="progress-segment filled"></div>
-<div class="progress-segment filled"></div>
-<div class="progress-segment filled"></div>
-<div class="progress-segment filled"></div>
-<div class="progress-segment"></div>
-</div>
-<div class="space-y-2 mt-auto">
-<div class="text-[10px] font-label-sm text-on-surface-variant border-b border-outline-variant pb-1 mb-2">OPERATIVES LIST</div>
-<div class="flex items-center space-x-2 font-code-md text-code-md text-on-surface">
-<span class="text-primary-container">01</span><span>L. Vance [LDR]</span>
-</div>
-<div class="flex items-center space-x-2 font-code-md text-code-md text-on-surface">
-<span class="text-primary-container">02</span><span>K. Ortiz</span>
-</div>
-<div class="flex items-center space-x-2 font-code-md text-code-md text-on-surface opacity-50">
-<span class="text-on-surface-variant">...</span><span>+2 MORE</span>
-</div>
-<!-- Empty Slot -->
-<div class="border border-dashed border-outline-variant p-1 text-center mt-2">
-<span class="font-code-md text-[10px] text-on-surface-variant opacity-50">READY FOR INPUT...</span>
-</div>
-</div>
-</div>
-<div class="border-t border-outline-variant p-2 flex justify-end bg-surface-container-lowest">
-<button class="text-on-surface-variant hover:text-primary-container font-label-sm text-label-sm uppercase p-1 transition-colors flex items-center">
-                             MANAGE <span class="material-symbols-outlined text-[14px] ml-1">chevron_right</span>
-</button>
-</div>
-</div>
-<!-- Card: Team Delta (Empty / Forming) -->
-<div class="bg-[#121214] border border-outline-variant crosshair-container flex flex-col h-full hover:border-primary-container transition-colors group opacity-80 hover:opacity-100">
-<div class="h-8 border-b border-outline-variant bg-surface-container-low flex justify-between items-center px-3 group-hover:bg-[#1c1c1f] transition-colors">
-<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">TEAM DELTA</span>
-<div class="flex items-center space-x-2">
-<span class="font-code-md text-[10px] text-secondary tracking-wider">FORMING</span>
-<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> <!-- Cyber Purple status -->
-</div>
-</div>
-<div class="p-4 flex-1 flex flex-col">
-<div class="flex justify-between items-end mb-2">
-<span class="font-code-md text-code-md text-on-surface-variant">MEMBER COUNT</span>
-<span class="font-headline-md text-body-lg text-on-surface-variant font-bold">1 / 5</span>
-</div>
-<div class="flex w-full mb-6">
-<div class="progress-segment filled" style="background-color: #ecb2ff; border-color: #ecb2ff; box-shadow: 0 0 5px rgba(236, 178, 255, 0.3);"></div>
-<div class="progress-segment"></div>
-<div class="progress-segment"></div>
-<div class="progress-segment"></div>
-<div class="progress-segment"></div>
-</div>
-<div class="space-y-2 mt-auto">
-<div class="text-[10px] font-label-sm text-on-surface-variant border-b border-outline-variant pb-1 mb-2">OPERATIVES LIST</div>
-<div class="flex items-center space-x-2 font-code-md text-code-md text-on-surface">
-<span class="text-secondary">01</span><span>R. Torres [LDR]</span>
-</div>
-<!-- Empty Slots -->
-<div class="space-y-1 mt-2">
-<div class="border border-dashed border-outline-variant p-1 text-center">
-<span class="font-code-md text-[10px] text-on-surface-variant opacity-50">READY FOR INPUT...</span>
-</div>
-<div class="border border-dashed border-outline-variant p-1 text-center">
-<span class="font-code-md text-[10px] text-on-surface-variant opacity-50">READY FOR INPUT...</span>
-</div>
-</div>
-</div>
-</div>
-<div class="border-t border-outline-variant p-2 flex justify-end bg-surface-container-lowest">
-<button class="text-on-surface-variant hover:text-primary-container font-label-sm text-label-sm uppercase p-1 transition-colors flex items-center">
-                             MANAGE <span class="material-symbols-outlined text-[14px] ml-1">chevron_right</span>
-</button>
-</div>
-</div>
-<!-- Add New Team Placeholder Card -->
-<button class="bg-[#131314] border-2 border-dashed border-outline-variant flex flex-col items-center justify-center h-full min-h-[320px] hover:border-primary-container hover:bg-surface-container-low transition-all duration-300 group">
-<span class="material-symbols-outlined text-4xl text-outline-variant group-hover:text-primary-container mb-4 transition-colors">add_circle</span>
-<span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-primary-container uppercase tracking-widest transition-colors">INITIALIZE NEW TEAM</span>
-</button>
-</div>
-</main>
-</div>
-</body></html>
+                <div
+                  class="flex items-center space-x-2 font-code-md text-code-md text-on-surface"
+                >
+                  <span class="text-primary-container">01</span
+                  ><span>J. Doe [LDR]</span>
+                </div>
+                <div
+                  class="flex items-center space-x-2 font-code-md text-code-md text-on-surface"
+                >
+                  <span class="text-primary-container">02</span
+                  ><span>S. Smith</span>
+                </div>
+                <div
+                  class="flex items-center space-x-2 font-code-md text-code-md text-on-surface opacity-50"
+                >
+                  <span class="text-on-surface-variant">...</span
+                  ><span>+3 MORE</span>
+                </div>
+              </div>
+            </div>
+            <!-- Action Footer -->
+            <div
+              class="border-t border-outline-variant p-2 flex justify-end bg-surface-container-lowest"
+            >
+              <button
+                class="text-on-surface-variant hover:text-primary-container font-label-sm text-label-sm uppercase p-1 transition-colors flex items-center"
+              >
+                MANAGE
+                <span class="material-symbols-outlined text-[14px] ml-1"
+                  >chevron_right</span
+                >
+              </button>
+            </div>
+          </div>
+          <!-- Card: Team Beta (Partial) -->
+          <div
+            class="bg-[#121214] border border-outline-variant crosshair-container flex flex-col h-full hover:border-primary-container transition-colors group"
+          >
+            <div
+              class="h-8 border-b border-outline-variant bg-surface-container-low flex justify-between items-center px-3 group-hover:bg-[#1c1c1f] transition-colors"
+            >
+              <span
+                class="font-label-sm text-label-sm text-primary uppercase tracking-widest"
+                >TEAM BETA</span
+              >
+              <div class="flex items-center space-x-2">
+                <span
+                  class="font-code-md text-[10px] text-primary-container tracking-wider"
+                  >ACTIVE</span
+                >
+                <span
+                  class="w-1.5 h-1.5 rounded-full bg-primary-container"
+                ></span>
+              </div>
+            </div>
+            <div class="p-4 flex-1 flex flex-col">
+              <div class="flex justify-between items-end mb-2">
+                <span class="font-code-md text-code-md text-on-surface-variant"
+                  >MEMBER COUNT</span
+                >
+                <span
+                  class="font-headline-md text-body-lg text-primary font-bold"
+                  >3 / 5</span
+                >
+              </div>
+              <div class="flex w-full mb-6">
+                <div class="progress-segment filled"></div>
+                <div class="progress-segment filled"></div>
+                <div class="progress-segment filled"></div>
+                <div class="progress-segment"></div>
+                <div class="progress-segment"></div>
+              </div>
+              <div class="space-y-2 mt-auto">
+                <div
+                  class="text-[10px] font-label-sm text-on-surface-variant border-b border-outline-variant pb-1 mb-2"
+                >
+                  OPERATIVES LIST
+                </div>
+                <div
+                  class="flex items-center space-x-2 font-code-md text-code-md text-on-surface"
+                >
+                  <span class="text-primary-container">01</span
+                  ><span>A. Wong [LDR]</span>
+                </div>
+                <div
+                  class="flex items-center space-x-2 font-code-md text-code-md text-on-surface"
+                >
+                  <span class="text-primary-container">02</span
+                  ><span>M. Chen</span>
+                </div>
+                <div
+                  class="flex items-center space-x-2 font-code-md text-code-md text-on-surface"
+                >
+                  <span class="text-primary-container">03</span
+                  ><span>B. Allen</span>
+                </div>
+                <!-- Empty Slot -->
+                <div
+                  class="border border-dashed border-outline-variant p-1 text-center mt-2"
+                >
+                  <span
+                    class="font-code-md text-[10px] text-on-surface-variant opacity-50"
+                    >READY FOR INPUT...</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div
+              class="border-t border-outline-variant p-2 flex justify-end bg-surface-container-lowest"
+            >
+              <button
+                class="text-on-surface-variant hover:text-primary-container font-label-sm text-label-sm uppercase p-1 transition-colors flex items-center"
+              >
+                MANAGE
+                <span class="material-symbols-outlined text-[14px] ml-1"
+                  >chevron_right</span
+                >
+              </button>
+            </div>
+          </div>
+          <!-- Card: Team Gamma (Partial) -->
+          <div
+            class="bg-[#121214] border border-outline-variant crosshair-container flex flex-col h-full hover:border-primary-container transition-colors group"
+          >
+            <div
+              class="h-8 border-b border-outline-variant bg-surface-container-low flex justify-between items-center px-3 group-hover:bg-[#1c1c1f] transition-colors"
+            >
+              <span
+                class="font-label-sm text-label-sm text-primary uppercase tracking-widest"
+                >TEAM GAMMA</span
+              >
+              <div class="flex items-center space-x-2">
+                <span
+                  class="font-code-md text-[10px] text-primary-container tracking-wider"
+                  >ACTIVE</span
+                >
+                <span
+                  class="w-1.5 h-1.5 rounded-full bg-primary-container"
+                ></span>
+              </div>
+            </div>
+            <div class="p-4 flex-1 flex flex-col">
+              <div class="flex justify-between items-end mb-2">
+                <span class="font-code-md text-code-md text-on-surface-variant"
+                  >MEMBER COUNT</span
+                >
+                <span
+                  class="font-headline-md text-body-lg text-primary font-bold"
+                  >4 / 5</span
+                >
+              </div>
+              <div class="flex w-full mb-6">
+                <div class="progress-segment filled"></div>
+                <div class="progress-segment filled"></div>
+                <div class="progress-segment filled"></div>
+                <div class="progress-segment filled"></div>
+                <div class="progress-segment"></div>
+              </div>
+              <div class="space-y-2 mt-auto">
+                <div
+                  class="text-[10px] font-label-sm text-on-surface-variant border-b border-outline-variant pb-1 mb-2"
+                >
+                  OPERATIVES LIST
+                </div>
+                <div
+                  class="flex items-center space-x-2 font-code-md text-code-md text-on-surface"
+                >
+                  <span class="text-primary-container">01</span
+                  ><span>L. Vance [LDR]</span>
+                </div>
+                <div
+                  class="flex items-center space-x-2 font-code-md text-code-md text-on-surface"
+                >
+                  <span class="text-primary-container">02</span
+                  ><span>K. Ortiz</span>
+                </div>
+                <div
+                  class="flex items-center space-x-2 font-code-md text-code-md text-on-surface opacity-50"
+                >
+                  <span class="text-on-surface-variant">...</span
+                  ><span>+2 MORE</span>
+                </div>
+                <!-- Empty Slot -->
+                <div
+                  class="border border-dashed border-outline-variant p-1 text-center mt-2"
+                >
+                  <span
+                    class="font-code-md text-[10px] text-on-surface-variant opacity-50"
+                    >READY FOR INPUT...</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div
+              class="border-t border-outline-variant p-2 flex justify-end bg-surface-container-lowest"
+            >
+              <button
+                class="text-on-surface-variant hover:text-primary-container font-label-sm text-label-sm uppercase p-1 transition-colors flex items-center"
+              >
+                MANAGE
+                <span class="material-symbols-outlined text-[14px] ml-1"
+                  >chevron_right</span
+                >
+              </button>
+            </div>
+          </div>
+          <!-- Card: Team Delta (Empty / Forming) -->
+          <div
+            class="bg-[#121214] border border-outline-variant crosshair-container flex flex-col h-full hover:border-primary-container transition-colors group opacity-80 hover:opacity-100"
+          >
+            <div
+              class="h-8 border-b border-outline-variant bg-surface-container-low flex justify-between items-center px-3 group-hover:bg-[#1c1c1f] transition-colors"
+            >
+              <span
+                class="font-label-sm text-label-sm text-primary uppercase tracking-widest"
+                >TEAM DELTA</span
+              >
+              <div class="flex items-center space-x-2">
+                <span
+                  class="font-code-md text-[10px] text-secondary tracking-wider"
+                  >FORMING</span
+                >
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                <!-- Cyber Purple status -->
+              </div>
+            </div>
+            <div class="p-4 flex-1 flex flex-col">
+              <div class="flex justify-between items-end mb-2">
+                <span class="font-code-md text-code-md text-on-surface-variant"
+                  >MEMBER COUNT</span
+                >
+                <span
+                  class="font-headline-md text-body-lg text-on-surface-variant font-bold"
+                  >1 / 5</span
+                >
+              </div>
+              <div class="flex w-full mb-6">
+                <div
+                  class="progress-segment filled"
+                  style="
+                    background-color: #ecb2ff;
+                    border-color: #ecb2ff;
+                    box-shadow: 0 0 5px rgba(236, 178, 255, 0.3);
+                  "
+                ></div>
+                <div class="progress-segment"></div>
+                <div class="progress-segment"></div>
+                <div class="progress-segment"></div>
+                <div class="progress-segment"></div>
+              </div>
+              <div class="space-y-2 mt-auto">
+                <div
+                  class="text-[10px] font-label-sm text-on-surface-variant border-b border-outline-variant pb-1 mb-2"
+                >
+                  OPERATIVES LIST
+                </div>
+                <div
+                  class="flex items-center space-x-2 font-code-md text-code-md text-on-surface"
+                >
+                  <span class="text-secondary">01</span
+                  ><span>R. Torres [LDR]</span>
+                </div>
+                <!-- Empty Slots -->
+                <div class="space-y-1 mt-2">
+                  <div
+                    class="border border-dashed border-outline-variant p-1 text-center"
+                  >
+                    <span
+                      class="font-code-md text-[10px] text-on-surface-variant opacity-50"
+                      >READY FOR INPUT...</span
+                    >
+                  </div>
+                  <div
+                    class="border border-dashed border-outline-variant p-1 text-center"
+                  >
+                    <span
+                      class="font-code-md text-[10px] text-on-surface-variant opacity-50"
+                      >READY FOR INPUT...</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="border-t border-outline-variant p-2 flex justify-end bg-surface-container-lowest"
+            >
+              <button
+                class="text-on-surface-variant hover:text-primary-container font-label-sm text-label-sm uppercase p-1 transition-colors flex items-center"
+              >
+                MANAGE
+                <span class="material-symbols-outlined text-[14px] ml-1"
+                  >chevron_right</span
+                >
+              </button>
+            </div>
+          </div>
+          <!-- Add New Team Placeholder Card -->
+          <button
+            class="bg-[#131314] border-2 border-dashed border-outline-variant flex flex-col items-center justify-center h-full min-h-[320px] hover:border-primary-container hover:bg-surface-container-low transition-all duration-300 group"
+          >
+            <span
+              class="material-symbols-outlined text-4xl text-outline-variant group-hover:text-primary-container mb-4 transition-colors"
+              >add_circle</span
+            >
+            <span
+              class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-primary-container uppercase tracking-widest transition-colors"
+              >INITIALIZE NEW TEAM</span
+            >
+          </button>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

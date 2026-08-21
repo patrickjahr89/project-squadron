@@ -1,409 +1,577 @@
-<!DOCTYPE html>
+<!doctype html>
 
 <html class="dark" lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>CMD_CENTER - Draw Results</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>CMD_CENTER - Draw Results</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
         theme: {
           extend: {
-            "colors": {
-                    "on-surface": "#e5e2e3",
-                    "primary-container": "#00ffc2",
-                    "on-tertiary-container": "#006e7e",
-                    "on-primary": "#003828",
-                    "surface-tint": "#00e1ab",
-                    "on-error": "#690005",
-                    "on-secondary-container": "#480063",
-                    "on-secondary": "#520071",
-                    "primary-fixed-dim": "#00e1ab",
-                    "on-secondary-fixed-variant": "#74009f",
-                    "on-tertiary-fixed": "#001f25",
-                    "tertiary": "#fcfeff",
-                    "on-tertiary-fixed-variant": "#004e5a",
-                    "outline-variant": "#3a4a43",
-                    "on-secondary-fixed": "#320047",
-                    "surface-container-highest": "#353436",
-                    "outline": "#83958c",
-                    "inverse-on-surface": "#313031",
-                    "on-surface-variant": "#b9cbc1",
-                    "secondary-container": "#cf5cff",
-                    "error-container": "#93000a",
-                    "on-primary-fixed": "#002116",
-                    "surface-container-low": "#1c1b1c",
-                    "secondary-fixed": "#f8d8ff",
-                    "on-error-container": "#ffdad6",
-                    "surface-bright": "#3a393a",
-                    "primary": "#fbfffa",
-                    "secondary-fixed-dim": "#ecb2ff",
-                    "secondary": "#ecb2ff",
-                    "tertiary-fixed-dim": "#00daf8",
-                    "on-tertiary": "#00363f",
-                    "on-primary-fixed-variant": "#00513c",
-                    "error": "#ffb4ab",
-                    "inverse-primary": "#006c50",
-                    "surface-container-lowest": "#0e0e0f",
-                    "on-primary-container": "#007255",
-                    "inverse-surface": "#e5e2e3",
-                    "surface-variant": "#353436",
-                    "background": "#131314",
-                    "surface-dim": "#131314",
-                    "tertiary-fixed": "#a5eeff",
-                    "on-background": "#e5e2e3",
-                    "surface": "#131314",
-                    "surface-container": "#201f20",
-                    "surface-container-high": "#2a2a2b",
-                    "primary-fixed": "#36ffc4",
-                    "tertiary-container": "#9fedff"
+            colors: {
+              "on-surface": "#e5e2e3",
+              "primary-container": "#00ffc2",
+              "on-tertiary-container": "#006e7e",
+              "on-primary": "#003828",
+              "surface-tint": "#00e1ab",
+              "on-error": "#690005",
+              "on-secondary-container": "#480063",
+              "on-secondary": "#520071",
+              "primary-fixed-dim": "#00e1ab",
+              "on-secondary-fixed-variant": "#74009f",
+              "on-tertiary-fixed": "#001f25",
+              tertiary: "#fcfeff",
+              "on-tertiary-fixed-variant": "#004e5a",
+              "outline-variant": "#3a4a43",
+              "on-secondary-fixed": "#320047",
+              "surface-container-highest": "#353436",
+              outline: "#83958c",
+              "inverse-on-surface": "#313031",
+              "on-surface-variant": "#b9cbc1",
+              "secondary-container": "#cf5cff",
+              "error-container": "#93000a",
+              "on-primary-fixed": "#002116",
+              "surface-container-low": "#1c1b1c",
+              "secondary-fixed": "#f8d8ff",
+              "on-error-container": "#ffdad6",
+              "surface-bright": "#3a393a",
+              primary: "#fbfffa",
+              "secondary-fixed-dim": "#ecb2ff",
+              secondary: "#ecb2ff",
+              "tertiary-fixed-dim": "#00daf8",
+              "on-tertiary": "#00363f",
+              "on-primary-fixed-variant": "#00513c",
+              error: "#ffb4ab",
+              "inverse-primary": "#006c50",
+              "surface-container-lowest": "#0e0e0f",
+              "on-primary-container": "#007255",
+              "inverse-surface": "#e5e2e3",
+              "surface-variant": "#353436",
+              background: "#131314",
+              "surface-dim": "#131314",
+              "tertiary-fixed": "#a5eeff",
+              "on-background": "#e5e2e3",
+              surface: "#131314",
+              "surface-container": "#201f20",
+              "surface-container-high": "#2a2a2b",
+              "primary-fixed": "#36ffc4",
+              "tertiary-container": "#9fedff",
             },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
             },
-            "spacing": {
-                    "container-max": "1440px",
-                    "unit": "4px",
-                    "margin": "24px",
-                    "gutter": "16px"
+            spacing: {
+              "container-max": "1440px",
+              unit: "4px",
+              margin: "24px",
+              gutter: "16px",
             },
-            "fontFamily": {
-                    "headline-md": [
-                            "JetBrains Mono"
-                    ],
-                    "body-lg": [
-                            "Inter"
-                    ],
-                    "body-md": [
-                            "Inter"
-                    ],
-                    "code-md": [
-                            "JetBrains Mono"
-                    ],
-                    "headline-lg": [
-                            "JetBrains Mono"
-                    ],
-                    "label-sm": [
-                            "JetBrains Mono"
-                    ]
+            fontFamily: {
+              "headline-md": ["JetBrains Mono"],
+              "body-lg": ["Inter"],
+              "body-md": ["Inter"],
+              "code-md": ["JetBrains Mono"],
+              "headline-lg": ["JetBrains Mono"],
+              "label-sm": ["JetBrains Mono"],
             },
-            "fontSize": {
-                    "headline-md": [
-                            "24px",
-                            {
-                                    "lineHeight": "1.3",
-                                    "fontWeight": "600"
-                            }
-                    ],
-                    "body-lg": [
-                            "18px",
-                            {
-                                    "lineHeight": "1.6",
-                                    "fontWeight": "400"
-                            }
-                    ],
-                    "body-md": [
-                            "16px",
-                            {
-                                    "lineHeight": "1.5",
-                                    "fontWeight": "400"
-                            }
-                    ],
-                    "code-md": [
-                            "14px",
-                            {
-                                    "lineHeight": "1.5",
-                                    "fontWeight": "400"
-                            }
-                    ],
-                    "headline-lg": [
-                            "32px",
-                            {
-                                    "lineHeight": "1.2",
-                                    "letterSpacing": "-0.02em",
-                                    "fontWeight": "700"
-                            }
-                    ],
-                    "label-sm": [
-                            "12px",
-                            {
-                                    "lineHeight": "1",
-                                    "letterSpacing": "0.05em",
-                                    "fontWeight": "500"
-                            }
-                    ]
-            }
-          }
+            fontSize: {
+              "headline-md": [
+                "24px",
+                {
+                  lineHeight: "1.3",
+                  fontWeight: "600",
+                },
+              ],
+              "body-lg": [
+                "18px",
+                {
+                  lineHeight: "1.6",
+                  fontWeight: "400",
+                },
+              ],
+              "body-md": [
+                "16px",
+                {
+                  lineHeight: "1.5",
+                  fontWeight: "400",
+                },
+              ],
+              "code-md": [
+                "14px",
+                {
+                  lineHeight: "1.5",
+                  fontWeight: "400",
+                },
+              ],
+              "headline-lg": [
+                "32px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "label-sm": [
+                "12px",
+                {
+                  lineHeight: "1",
+                  letterSpacing: "0.05em",
+                  fontWeight: "500",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Base Grid Background */
+      body {
+        background-color: #131314;
+        background-image: radial-gradient(
+          circle at center,
+          rgba(255, 255, 255, 0.03) 1px,
+          transparent 1px
+        );
+        background-size: 8px 8px;
+      }
+
+      /* Glitch / Neon Effects */
+      .neon-text-primary {
+        text-shadow:
+          0 0 10px rgba(0, 255, 194, 0.5),
+          0 0 20px rgba(0, 255, 194, 0.3);
+      }
+
+      .neon-border-primary {
+        box-shadow:
+          0 0 10px rgba(0, 255, 194, 0.2),
+          inset 0 0 10px rgba(0, 255, 194, 0.1);
+      }
+
+      .neon-border-secondary {
+        box-shadow:
+          0 0 10px rgba(207, 92, 255, 0.2),
+          inset 0 0 10px rgba(207, 92, 255, 0.1);
+      }
+
+      .neon-border-tertiary {
+        box-shadow:
+          0 0 10px rgba(159, 237, 255, 0.2),
+          inset 0 0 10px rgba(159, 237, 255, 0.1);
+      }
+
+      /* Slotting Animation */
+      @keyframes slotIn {
+        0% {
+          opacity: 0;
+          transform: translateY(-20px) scale(0.95);
+          border-color: rgba(255, 255, 255, 0.1);
+        }
+        50% {
+          opacity: 1;
+          transform: translateY(2px) scale(1.02);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
         }
       }
-    </script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
-<style>
-        /* Base Grid Background */
-        body {
-            background-color: #131314;
-            background-image: radial-gradient(circle at center, rgba(255,255,255,0.03) 1px, transparent 1px);
-            background-size: 8px 8px;
-        }
 
-        /* Glitch / Neon Effects */
-        .neon-text-primary {
-            text-shadow: 0 0 10px rgba(0, 255, 194, 0.5), 0 0 20px rgba(0, 255, 194, 0.3);
-        }
-        
-        .neon-border-primary {
-            box-shadow: 0 0 10px rgba(0, 255, 194, 0.2), inset 0 0 10px rgba(0, 255, 194, 0.1);
-        }
+      .slot-animation {
+        animation: slotIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        opacity: 0; /* Initial state before animation */
+      }
 
-        .neon-border-secondary {
-            box-shadow: 0 0 10px rgba(207, 92, 255, 0.2), inset 0 0 10px rgba(207, 92, 255, 0.1);
-        }
-        
-        .neon-border-tertiary {
-            box-shadow: 0 0 10px rgba(159, 237, 255, 0.2), inset 0 0 10px rgba(159, 237, 255, 0.1);
-        }
+      .delay-1 {
+        animation-delay: 0.2s;
+      }
+      .delay-2 {
+        animation-delay: 0.4s;
+      }
+      .delay-3 {
+        animation-delay: 0.6s;
+      }
+      .delay-4 {
+        animation-delay: 0.8s;
+      }
+      .delay-5 {
+        animation-delay: 1s;
+      }
 
-        /* Slotting Animation */
-        @keyframes slotIn {
-            0% {
-                opacity: 0;
-                transform: translateY(-20px) scale(0.95);
-                border-color: rgba(255,255,255,0.1);
-            }
-            50% {
-                opacity: 1;
-                transform: translateY(2px) scale(1.02);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+      /* Pulse Dot */
+      @keyframes pulseDot {
+        0% {
+          box-shadow: 0 0 0 0 rgba(0, 255, 194, 0.7);
         }
+        70% {
+          box-shadow: 0 0 0 6px rgba(0, 255, 194, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(0, 255, 194, 0);
+        }
+      }
 
-        .slot-animation {
-            animation: slotIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-            opacity: 0; /* Initial state before animation */
-        }
-        
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-        .delay-3 { animation-delay: 0.6s; }
-        .delay-4 { animation-delay: 0.8s; }
-        .delay-5 { animation-delay: 1.0s; }
-        
-        /* Pulse Dot */
-        @keyframes pulseDot {
-            0% { box-shadow: 0 0 0 0 rgba(0, 255, 194, 0.7); }
-            70% { box-shadow: 0 0 0 6px rgba(0, 255, 194, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(0, 255, 194, 0); }
-        }
-        
-        .dot-pulse {
-            animation: pulseDot 2s infinite;
-        }
+      .dot-pulse {
+        animation: pulseDot 2s infinite;
+      }
 
-        /* Glassmorphism Panel */
-        .glass-panel {
-            background: rgba(18, 18, 20, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
+      /* Glassmorphism Panel */
+      .glass-panel {
+        background: rgba(18, 18, 20, 0.8);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
 
-        /* Scanline Overlay */
-        .scanline::before {
-            content: " ";
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            background: linear-gradient(
-                to bottom,
-                rgba(255, 255, 255, 0),
-                rgba(255, 255, 255, 0) 50%,
-                rgba(0, 0, 0, 0.1) 50%,
-                rgba(0, 0, 0, 0.1)
-            );
-            background-size: 100% 4px;
-            z-index: 50;
-            pointer-events: none;
-        }
-        
-        /* Crosshair Corners */
-        .crosshair-corners {
-            position: relative;
-        }
-        .crosshair-corners::before,
-        .crosshair-corners::after {
-            content: '';
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            border-color: #3a4a43; /* outline-variant */
-            border-style: solid;
-            pointer-events: none;
-            z-index: 10;
-        }
-        .crosshair-corners::before {
-            top: -1px; left: -1px;
-            border-width: 1px 0 0 1px;
-        }
-        .crosshair-corners::after {
-            bottom: -1px; right: -1px;
-            border-width: 0 1px 1px 0;
-        }
+      /* Scanline Overlay */
+      .scanline::before {
+        content: " ";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0),
+          rgba(255, 255, 255, 0) 50%,
+          rgba(0, 0, 0, 0.1) 50%,
+          rgba(0, 0, 0, 0.1)
+        );
+        background-size: 100% 4px;
+        z-index: 50;
+        pointer-events: none;
+      }
+
+      /* Crosshair Corners */
+      .crosshair-corners {
+        position: relative;
+      }
+      .crosshair-corners::before,
+      .crosshair-corners::after {
+        content: "";
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        border-color: #3a4a43; /* outline-variant */
+        border-style: solid;
+        pointer-events: none;
+        z-index: 10;
+      }
+      .crosshair-corners::before {
+        top: -1px;
+        left: -1px;
+        border-width: 1px 0 0 1px;
+      }
+      .crosshair-corners::after {
+        bottom: -1px;
+        right: -1px;
+        border-width: 0 1px 1px 0;
+      }
     </style>
-</head>
-<body class="text-on-surface bg-background min-h-screen flex flex-col font-body-md overflow-x-hidden">
-<!-- TopAppBar -->
-<header class="w-full h-16 border-b border-outline-variant bg-surface-container shadow-[0_0_10px_rgba(0,255,194,0.1)] flex justify-between items-center px-margin z-40 shrink-0">
-<div class="flex items-center gap-4">
-<span class="font-headline-md text-headline-md text-primary-container font-bold tracking-tighter neon-text-primary">TEAM_RANDOMIZER_OS</span>
-</div>
-<div class="hidden md:flex items-center gap-6">
-<a class="text-on-surface-variant font-code-md text-code-md hover:text-primary-fixed-dim transition-colors cursor-pointer active:opacity-80" href="#">SESSION: 04:20:11</a>
-<a class="text-on-surface-variant font-code-md text-code-md hover:text-primary-fixed-dim transition-colors cursor-pointer active:opacity-80" href="#">STATUS: SYSTEM READY</a>
-</div>
-<div class="flex items-center gap-4">
-<button class="hidden md:block bg-surface-container-highest border border-primary-container text-primary-container font-label-sm text-label-sm px-4 py-2 hover:bg-primary-container hover:text-on-primary-container transition-colors shadow-[0_0_10px_rgba(0,255,194,0.1)]">
-                NEW SESSION
-            </button>
-<div class="flex gap-2">
-<button class="text-on-surface-variant hover:text-primary-fixed-dim transition-colors">
-<span class="material-symbols-outlined">notifications_active</span>
-</button>
-<button class="text-on-surface-variant hover:text-primary-fixed-dim transition-colors">
-<span class="material-symbols-outlined">help_outline</span>
-</button>
-</div>
-<div class="w-8 h-8 rounded-full bg-surface-container-highest border border-outline-variant overflow-hidden ml-2">
-<img class="w-full h-full object-cover" data-alt="A stylized, low-poly digital avatar for a system user in a high-tech interface, glowing eyes, dark muted background, cyberpunk aesthetic." src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
-</div>
-</div>
-</header>
-<div class="flex flex-1 overflow-hidden">
-<!-- SideNavBar -->
-<nav class="h-full w-64 border-r border-outline-variant bg-surface-container-lowest hidden md:flex flex-col py-margin shrink-0 z-30">
-<!-- Navigation Links -->
-<ul class="flex-1 space-y-2 mt-4">
-<li>
-<a class="flex items-center gap-3 py-3 text-on-surface-variant pl-4 hover:bg-surface-container-highest hover:text-primary transition-all duration-200 ease-in-out" href="#">
-<span class="material-symbols-outlined">dashboard</span>
-<span class="font-label-sm text-label-sm uppercase">Dashboard</span>
-</a>
-</li>
-<li>
-<a class="flex items-center gap-3 py-3 text-on-surface-variant pl-4 hover:bg-surface-container-highest hover:text-primary transition-all duration-200 ease-in-out" href="#">
-<span class="material-symbols-outlined">groups</span>
-<span class="font-label-sm text-label-sm uppercase">People</span>
-</a>
-</li>
-<li>
-<a class="flex items-center gap-3 py-3 text-on-surface-variant pl-4 hover:bg-surface-container-highest hover:text-primary transition-all duration-200 ease-in-out" href="#">
-<span class="material-symbols-outlined">hub</span>
-<span class="font-label-sm text-label-sm uppercase">Teams</span>
-</a>
-</li>
-<li>
-<a class="flex items-center gap-3 py-3 text-on-surface-variant pl-4 hover:bg-surface-container-highest hover:text-primary transition-all duration-200 ease-in-out" href="#">
-<span class="material-symbols-outlined">shuffle</span>
-<span class="font-label-sm text-label-sm uppercase">Draw</span>
-</a>
-</li>
-<li>
-<a class="flex items-center gap-3 py-3 text-primary font-bold border-l-2 border-primary-container pl-4 hover:bg-surface-container-highest hover:text-primary transition-all duration-200 ease-in-out bg-surface-container-lowest neon-text-primary" href="#">
-<span class="material-symbols-outlined">analytics</span>
-<span class="font-label-sm text-label-sm uppercase">Results</span>
-</a>
-</li>
-</ul>
-<!-- Footer Links -->
-<div class="mt-auto border-t border-outline-variant pt-4 space-y-2">
-<a class="flex items-center gap-3 py-2 px-4 text-on-surface-variant hover:bg-surface-container-highest hover:text-primary transition-all duration-200 ease-in-out" href="#">
-<span class="material-symbols-outlined text-sm">settings</span>
-<span class="font-label-sm text-label-sm uppercase">Settings</span>
-</a>
-<a class="flex items-center gap-3 py-2 px-4 text-on-surface-variant hover:bg-surface-container-highest hover:text-primary transition-all duration-200 ease-in-out" href="#">
-<span class="material-symbols-outlined text-sm">terminal</span>
-<span class="font-label-sm text-label-sm uppercase">System Status</span>
-</a>
-</div>
-</nav>
-<!-- Main Content Area -->
-<main class="flex-1 overflow-y-auto relative scanline p-margin md:p-8 flex flex-col items-center">
-<!-- Header Section -->
-<div class="w-full max-w-6xl mb-12 text-center mt-8">
-<div class="inline-flex items-center justify-center gap-3 mb-2 px-4 py-1 border border-primary-container bg-[#002116] rounded-full">
-<span class="w-2 h-2 rounded-full bg-primary-container dot-pulse"></span>
-<span class="font-code-md text-code-md text-primary-container tracking-wider">PROCESS_COMPLETE</span>
-</div>
-<h1 class="font-headline-lg text-[48px] md:text-[64px] font-bold text-primary-container tracking-tighter neon-text-primary uppercase mt-4">
-                    Draw Complete
-                </h1>
-<p class="font-code-md text-code-md text-on-surface-variant mt-4">&gt;&gt; ALL ENTITIES SUCCESSFULLY ASSIGNED TO CLUSTERS.</p>
-</div>
-<!-- Bento Grid / Results Area -->
-<div class="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
-<!-- Card 1: TEAM ALPHA -->
-<div class="bg-[#121214] border border-primary-container crosshair-corners flex flex-col relative overflow-hidden neon-border-primary h-full">
-<!-- Header Strip -->
-<div class="h-10 border-b border-primary-container bg-[#002116] flex items-center justify-between px-4">
-<span class="font-label-sm text-label-sm text-primary-container tracking-widest font-bold">TEAM_ALPHA</span>
-<span class="material-symbols-outlined text-primary-container text-sm">verified</span>
-</div>
-<!-- Content -->
-<div class="p-4 flex-1 flex flex-col gap-3">
-<!-- Slot 1 -->
-<div class="flex items-center gap-3 p-3 bg-surface-container-lowest border border-outline-variant slot-animation delay-1">
-<div class="w-8 h-8 bg-surface-container-highest border border-outline flex items-center justify-center rounded-sm shrink-0">
-<span class="material-symbols-outlined text-on-surface text-sm">person</span>
-</div>
-<div class="flex-1 min-w-0">
-<div class="font-code-md text-code-md text-on-surface truncate">J. Doe [Lead]</div>
-<div class="font-label-sm text-[10px] text-on-surface-variant truncate">ID: USR-8472</div>
-</div>
-<span class="w-2 h-2 rounded-full bg-primary-container dot-pulse shrink-0" title="New Assignment"></span>
-</div>
-<!-- Slot 2 -->
-<div class="flex items-center gap-3 p-3 bg-surface-container-lowest border border-outline-variant slot-animation delay-2">
-<div class="w-8 h-8 bg-surface-container-highest border border-outline flex items-center justify-center rounded-sm shrink-0">
-<span class="material-symbols-outlined text-on-surface text-sm">person</span>
-</div>
-<div class="flex-1 min-w-0">
-<div class="font-code-md text-code-md text-on-surface truncate">A. Smith</div>
-<div class="font-label-sm text-[10px] text-on-surface-variant truncate">ID: USR-9102</div>
-</div>
-<span class="w-2 h-2 rounded-full bg-primary-container dot-pulse shrink-0" title="New Assignment"></span>
-</div>
-<!-- Slot 3 -->
-<div class="flex items-center gap-3 p-3 bg-surface-container-lowest border border-outline-variant slot-animation delay-3">
-<div class="w-8 h-8 bg-surface-container-highest border border-outline flex items-center justify-center rounded-sm shrink-0">
-<span class="material-symbols-outlined text-on-surface text-sm">person</span>
-</div>
-<div class="flex-1 min-w-0">
-<div class="font-code-md text-code-md text-on-surface truncate">M. Johnson</div>
-<div class="font-label-sm text-[10px] text-on-surface-variant truncate">ID: USR-3341</div>
-</div>
-<span class="w-2 h-2 rounded-full bg-primary-container dot-pulse shrink-0" title="New Assignment"></span>
-</div>
-<!-- Empty Slot Example -->
-<div class="flex items-center gap-3 p-3 border border-dashed border-outline-variant mt-auto opacity-50">
-<div class="font-code-md text-code-md text-on-surface-variant flex-1 text-center text-xs">
-                                 [ SLOT_AVAILABLE ]
-                             </div>
-</div>
-</div>
-<!-- Decorative Background Element -->
-<div class="absolute -bottom-8 -right-8 opacity-5 text-[120px] font-bold text-primary-container pointer-events-none select-none">
-                        A
-                    </div>
-</div>
-<!-- Card 2:--></div></main></div></body></html>
+  </head>
+  <body
+    class="text-on-surface bg-background min-h-screen flex flex-col font-body-md overflow-x-hidden"
+  >
+    <!-- TopAppBar -->
+    <header
+      class="w-full h-16 border-b border-outline-variant bg-surface-container shadow-[0_0_10px_rgba(0,255,194,0.1)] flex justify-between items-center px-margin z-40 shrink-0"
+    >
+      <div class="flex items-center gap-4">
+        <span
+          class="font-headline-md text-headline-md text-primary-container font-bold tracking-tighter neon-text-primary"
+          >TEAM_FORGE</span
+        >
+      </div>
+      <div class="hidden md:flex items-center gap-6">
+        <a
+          class="text-on-surface-variant font-code-md text-code-md hover:text-primary-fixed-dim transition-colors cursor-pointer active:opacity-80"
+          href="#"
+          >SESSION: 04:20:11</a
+        >
+        <a
+          class="text-on-surface-variant font-code-md text-code-md hover:text-primary-fixed-dim transition-colors cursor-pointer active:opacity-80"
+          href="#"
+          >STATUS: SYSTEM READY</a
+        >
+      </div>
+      <div class="flex items-center gap-4">
+        <button
+          class="hidden md:block bg-surface-container-highest border border-primary-container text-primary-container font-label-sm text-label-sm px-4 py-2 hover:bg-primary-container hover:text-on-primary-container transition-colors shadow-[0_0_10px_rgba(0,255,194,0.1)]"
+        >
+          NEW SESSION
+        </button>
+        <div class="flex gap-2">
+          <button
+            class="text-on-surface-variant hover:text-primary-fixed-dim transition-colors"
+          >
+            <span class="material-symbols-outlined">notifications_active</span>
+          </button>
+          <button
+            class="text-on-surface-variant hover:text-primary-fixed-dim transition-colors"
+          >
+            <span class="material-symbols-outlined">help_outline</span>
+          </button>
+        </div>
+        <div
+          class="w-8 h-8 rounded-full bg-surface-container-highest border border-outline-variant overflow-hidden ml-2"
+        >
+          <img
+            class="w-full h-full object-cover"
+            data-alt="A stylized, low-poly digital avatar for a system user in a high-tech interface, glowing eyes, dark muted background, cyberpunk aesthetic."
+            src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"
+          />
+        </div>
+      </div>
+    </header>
+    <div class="flex flex-1 overflow-hidden">
+      <!-- SideNavBar -->
+      <nav
+        class="h-full w-64 border-r border-outline-variant bg-surface-container-lowest hidden md:flex flex-col py-margin shrink-0 z-30"
+      >
+        <!-- Navigation Links -->
+        <ul class="flex-1 space-y-2 mt-4">
+          <li>
+            <a
+              class="flex items-center gap-3 py-3 text-on-surface-variant pl-4 hover:bg-surface-container-highest hover:text-primary transition-all duration-200 ease-in-out"
+              href="#"
+            >
+              <span class="material-symbols-outlined">dashboard</span>
+              <span class="font-label-sm text-label-sm uppercase"
+                >Dashboard</span
+              >
+            </a>
+          </li>
+          <li>
+            <a
+              class="flex items-center gap-3 py-3 text-on-surface-variant pl-4 hover:bg-surface-container-highest hover:text-primary transition-all duration-200 ease-in-out"
+              href="#"
+            >
+              <span class="material-symbols-outlined">groups</span>
+              <span class="font-label-sm text-label-sm uppercase">People</span>
+            </a>
+          </li>
+          <li>
+            <a
+              class="flex items-center gap-3 py-3 text-on-surface-variant pl-4 hover:bg-surface-container-highest hover:text-primary transition-all duration-200 ease-in-out"
+              href="#"
+            >
+              <span class="material-symbols-outlined">hub</span>
+              <span class="font-label-sm text-label-sm uppercase">Teams</span>
+            </a>
+          </li>
+          <li>
+            <a
+              class="flex items-center gap-3 py-3 text-on-surface-variant pl-4 hover:bg-surface-container-highest hover:text-primary transition-all duration-200 ease-in-out"
+              href="#"
+            >
+              <span class="material-symbols-outlined">shuffle</span>
+              <span class="font-label-sm text-label-sm uppercase">Draw</span>
+            </a>
+          </li>
+          <li>
+            <a
+              class="flex items-center gap-3 py-3 text-primary font-bold border-l-2 border-primary-container pl-4 hover:bg-surface-container-highest hover:text-primary transition-all duration-200 ease-in-out bg-surface-container-lowest neon-text-primary"
+              href="#"
+            >
+              <span class="material-symbols-outlined">analytics</span>
+              <span class="font-label-sm text-label-sm uppercase">Results</span>
+            </a>
+          </li>
+        </ul>
+        <!-- Footer Links -->
+        <div class="mt-auto border-t border-outline-variant pt-4 space-y-2">
+          <a
+            class="flex items-center gap-3 py-2 px-4 text-on-surface-variant hover:bg-surface-container-highest hover:text-primary transition-all duration-200 ease-in-out"
+            href="#"
+          >
+            <span class="material-symbols-outlined text-sm">settings</span>
+            <span class="font-label-sm text-label-sm uppercase">Settings</span>
+          </a>
+          <a
+            class="flex items-center gap-3 py-2 px-4 text-on-surface-variant hover:bg-surface-container-highest hover:text-primary transition-all duration-200 ease-in-out"
+            href="#"
+          >
+            <span class="material-symbols-outlined text-sm">terminal</span>
+            <span class="font-label-sm text-label-sm uppercase"
+              >System Status</span
+            >
+          </a>
+        </div>
+      </nav>
+      <!-- Main Content Area -->
+      <main
+        class="flex-1 overflow-y-auto relative scanline p-margin md:p-8 flex flex-col items-center"
+      >
+        <!-- Header Section -->
+        <div class="w-full max-w-6xl mb-12 text-center mt-8">
+          <div
+            class="inline-flex items-center justify-center gap-3 mb-2 px-4 py-1 border border-primary-container bg-[#002116] rounded-full"
+          >
+            <span
+              class="w-2 h-2 rounded-full bg-primary-container dot-pulse"
+            ></span>
+            <span
+              class="font-code-md text-code-md text-primary-container tracking-wider"
+              >PROCESS_COMPLETE</span
+            >
+          </div>
+          <h1
+            class="font-headline-lg text-[48px] md:text-[64px] font-bold text-primary-container tracking-tighter neon-text-primary uppercase mt-4"
+          >
+            Draw Complete
+          </h1>
+          <p class="font-code-md text-code-md text-on-surface-variant mt-4">
+            &gt;&gt; ALL ENTITIES SUCCESSFULLY ASSIGNED TO CLUSTERS.
+          </p>
+        </div>
+        <!-- Bento Grid / Results Area -->
+        <div
+          class="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter"
+        >
+          <!-- Card 1: TEAM ALPHA -->
+          <div
+            class="bg-[#121214] border border-primary-container crosshair-corners flex flex-col relative overflow-hidden neon-border-primary h-full"
+          >
+            <!-- Header Strip -->
+            <div
+              class="h-10 border-b border-primary-container bg-[#002116] flex items-center justify-between px-4"
+            >
+              <span
+                class="font-label-sm text-label-sm text-primary-container tracking-widest font-bold"
+                >TEAM_ALPHA</span
+              >
+              <span
+                class="material-symbols-outlined text-primary-container text-sm"
+                >verified</span
+              >
+            </div>
+            <!-- Content -->
+            <div class="p-4 flex-1 flex flex-col gap-3">
+              <!-- Slot 1 -->
+              <div
+                class="flex items-center gap-3 p-3 bg-surface-container-lowest border border-outline-variant slot-animation delay-1"
+              >
+                <div
+                  class="w-8 h-8 bg-surface-container-highest border border-outline flex items-center justify-center rounded-sm shrink-0"
+                >
+                  <span
+                    class="material-symbols-outlined text-on-surface text-sm"
+                    >person</span
+                  >
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div
+                    class="font-code-md text-code-md text-on-surface truncate"
+                  >
+                    J. Doe [Lead]
+                  </div>
+                  <div
+                    class="font-label-sm text-[10px] text-on-surface-variant truncate"
+                  >
+                    ID: USR-8472
+                  </div>
+                </div>
+                <span
+                  class="w-2 h-2 rounded-full bg-primary-container dot-pulse shrink-0"
+                  title="New Assignment"
+                ></span>
+              </div>
+              <!-- Slot 2 -->
+              <div
+                class="flex items-center gap-3 p-3 bg-surface-container-lowest border border-outline-variant slot-animation delay-2"
+              >
+                <div
+                  class="w-8 h-8 bg-surface-container-highest border border-outline flex items-center justify-center rounded-sm shrink-0"
+                >
+                  <span
+                    class="material-symbols-outlined text-on-surface text-sm"
+                    >person</span
+                  >
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div
+                    class="font-code-md text-code-md text-on-surface truncate"
+                  >
+                    A. Smith
+                  </div>
+                  <div
+                    class="font-label-sm text-[10px] text-on-surface-variant truncate"
+                  >
+                    ID: USR-9102
+                  </div>
+                </div>
+                <span
+                  class="w-2 h-2 rounded-full bg-primary-container dot-pulse shrink-0"
+                  title="New Assignment"
+                ></span>
+              </div>
+              <!-- Slot 3 -->
+              <div
+                class="flex items-center gap-3 p-3 bg-surface-container-lowest border border-outline-variant slot-animation delay-3"
+              >
+                <div
+                  class="w-8 h-8 bg-surface-container-highest border border-outline flex items-center justify-center rounded-sm shrink-0"
+                >
+                  <span
+                    class="material-symbols-outlined text-on-surface text-sm"
+                    >person</span
+                  >
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div
+                    class="font-code-md text-code-md text-on-surface truncate"
+                  >
+                    M. Johnson
+                  </div>
+                  <div
+                    class="font-label-sm text-[10px] text-on-surface-variant truncate"
+                  >
+                    ID: USR-3341
+                  </div>
+                </div>
+                <span
+                  class="w-2 h-2 rounded-full bg-primary-container dot-pulse shrink-0"
+                  title="New Assignment"
+                ></span>
+              </div>
+              <!-- Empty Slot Example -->
+              <div
+                class="flex items-center gap-3 p-3 border border-dashed border-outline-variant mt-auto opacity-50"
+              >
+                <div
+                  class="font-code-md text-code-md text-on-surface-variant flex-1 text-center text-xs"
+                >
+                  [ SLOT_AVAILABLE ]
+                </div>
+              </div>
+            </div>
+            <!-- Decorative Background Element -->
+            <div
+              class="absolute -bottom-8 -right-8 opacity-5 text-[120px] font-bold text-primary-container pointer-events-none select-none"
+            >
+              A
+            </div>
+          </div>
+          <!-- Card 2:-->
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

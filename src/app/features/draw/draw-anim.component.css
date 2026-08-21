@@ -1,0 +1,5 @@
+.neon-box-primary {
+  box-shadow:
+    0 0 15px rgba(0, 255, 194, 0.2),
+    inset 0 0 15px rgba(0, 255, 194, 0.1);
+}

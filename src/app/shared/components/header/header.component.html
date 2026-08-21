@@ -1,0 +1,32 @@
+<header
+  class="w-full h-16 border-b border-outline-variant bg-surface-container shadow-[0_0_10px_rgba(0,255,194,0.1)] flex justify-between items-center px-margin shrink-0 z-40 relative"
+>
+  <div class="flex items-center gap-4">
+    <button
+      class="md:hidden text-on-surface-variant hover:text-primary-fixed-dim transition-colors cursor-pointer active:opacity-80"
+    >
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+    <div
+      class="font-headline-md text-headline-md text-primary-container font-bold tracking-tight uppercase"
+    >
+      TEAM_FORGE
+    </div>
+  </div>
+
+  <div class="hidden lg:flex items-center gap-8">
+    <div
+      class="text-primary-container font-bold font-code-md text-code-md cursor-pointer active:opacity-80 flex items-center gap-2"
+    >
+      <div
+        class="w-2 h-2 bg-primary-container rounded-full animate-pulse shadow-[0_0_8px_rgba(0,255,194,0.8)]"
+      ></div>
+      SESSION: {{ now | date: "HH:mm:ss" }}
+    </div>
+    <div
+      class="text-on-surface-variant font-code-md text-code-md transition-colors active:opacity-80"
+    >
+      STATUS: SYSTEM READY
+    </div>
+  </div>
+</header>
