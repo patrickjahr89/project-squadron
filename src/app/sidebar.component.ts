@@ -22,19 +22,19 @@ import { StoreService } from './store.service';
       </div>
       
       <nav class="flex-1 overflow-y-auto overflow-x-hidden w-full flex flex-col gap-1 px-4">
-        <button (click)="store.view.set('dashboard')" 
+        <button (click)="store.navigate('dashboard')" 
                 [ngClass]="store.view() === 'dashboard' ? 'text-primary font-bold border-l-2 border-primary-container bg-surface-container-low fill-icon' : 'text-on-surface-variant hover:bg-surface-container-highest hover:text-primary border-l-2 border-transparent'" 
                 class="group flex items-center gap-3 py-3 px-3 pl-4 transition-all duration-200 ease-in-out font-label-sm text-label-sm rounded w-full text-left">
           <span class="material-symbols-outlined text-[20px] transition-transform group-hover:scale-110" [ngClass]="store.view() === 'dashboard' ? 'text-primary-container' : ''">dashboard</span>
           <span class="tracking-widest uppercase" [ngClass]="store.view() === 'dashboard' ? 'drop-shadow-[0_0_8px_rgba(0,255,194,0.4)]' : ''">Dashboard</span>
         </button>
-        <button (click)="store.view.set('people')" 
+        <button (click)="store.navigate('people')" 
                 [ngClass]="store.view() === 'people' ? 'text-primary font-bold border-l-2 border-primary-container bg-surface-container-low fill-icon' : 'text-on-surface-variant hover:bg-surface-container-highest hover:text-primary border-l-2 border-transparent'" 
                 class="group flex items-center gap-3 py-3 px-3 pl-4 transition-all duration-200 ease-in-out font-label-sm text-label-sm rounded w-full text-left">
           <span class="material-symbols-outlined text-[20px] transition-transform group-hover:scale-110" [ngClass]="store.view() === 'people' ? 'text-primary-container' : ''">groups</span>
           <span class="tracking-widest uppercase" [ngClass]="store.view() === 'people' ? 'drop-shadow-[0_0_8px_rgba(0,255,194,0.4)]' : ''">People</span>
         </button>
-        <button (click)="store.view.set('teams')" 
+        <button (click)="store.navigate('teams')" 
                 [ngClass]="store.view() === 'teams' ? 'text-primary font-bold border-l-2 border-primary-container bg-surface-container-low fill-icon' : 'text-on-surface-variant hover:bg-surface-container-highest hover:text-primary border-l-2 border-transparent'" 
                 class="group flex items-center gap-3 py-3 px-3 pl-4 transition-all duration-200 ease-in-out font-label-sm text-label-sm rounded w-full text-left">
           <span class="material-symbols-outlined text-[20px] transition-transform group-hover:scale-110" [ngClass]="store.view() === 'teams' ? 'text-primary-container' : ''">hub</span>
@@ -46,7 +46,7 @@ import { StoreService } from './store.service';
           <span class="material-symbols-outlined text-[20px] transition-transform group-hover:scale-110" [ngClass]="store.view() === 'draw_config' ? 'text-primary-container' : ''">shuffle</span>
           <span class="tracking-widest uppercase" [ngClass]="store.view() === 'draw_config' ? 'drop-shadow-[0_0_8px_rgba(0,255,194,0.4)]' : ''">Draw</span>
         </button>
-        <button (click)="store.view.set('draw_result')" 
+        <button (click)="store.navigate('draw_result')" 
                 [ngClass]="store.view() === 'draw_result' ? 'text-primary font-bold border-l-2 border-primary-container bg-surface-container-low fill-icon' : 'text-on-surface-variant hover:bg-surface-container-highest hover:text-primary border-l-2 border-transparent'" 
                 class="group flex items-center gap-3 py-3 px-3 pl-4 transition-all duration-200 ease-in-out font-label-sm text-label-sm rounded w-full text-left">
           <span class="material-symbols-outlined text-[20px] transition-transform group-hover:scale-110" [ngClass]="store.view() === 'draw_result' ? 'text-primary-container' : ''">analytics</span>
@@ -77,4 +77,3 @@ import { StoreService } from './store.service';
 export class SidebarComponent {
   store = inject(StoreService);
 }
-

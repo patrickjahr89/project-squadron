@@ -23,18 +23,20 @@ import { CommonModule } from '@angular/common';
         </div>
 
         <div class="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter relative z-10">
-            @for (teamId of getTeamsInResult(); track teamId) {
-                @let team = getTeam(teamId);
+             @if (!store.lastDrawResult()) {
+                 <div class="w-full border border-error bg-error-container p-4 text-error font-code-md text-code-md uppercase">NO VALID COMPLETED DRAW</div>
+             }
+             @for (teamId of getTeamsInResult(); track teamId) {
+                 @let team = getTeam(teamId);
                 @let newAssignments = getNewAssignmentsForTeam(teamId);
                 @let allMembers = getAllMembers(teamId);
                 
-                <div class="bg-[#121214] border border-primary-container crosshair-container flex flex-col relative overflow-hidden shadow-[0_0_10px_rgba(0,255,194,0.2)] h-full">
+                  <div class="bg-[#121214] border border-primary-container crosshair-container flex flex-col relative overflow-hidden shadow-[0_0_10px_rgba(0,255,194,0.2)] h-full">
                     <div class="h-10 border-b border-primary-container bg-[#002116] flex items-center justify-between px-4">
                         <span class="font-label-sm text-label-sm text-primary-container tracking-widest font-bold uppercase">{{ team?.name }}</span>
                         <span class="material-symbols-outlined text-primary-container text-sm">verified</span>
-                    </div>
-
-                    <div class="p-4 flex-1 flex flex-col gap-3">
+                 </div>
+                     <div class="p-4 flex-1 flex flex-col gap-3">
                         @for (member of allMembers; track member.id; let idx = $index) {
                             @let isNew = newAssignments.includes(member.id);
                             
@@ -42,7 +44,7 @@ import { CommonModule } from '@angular/common';
                                  [style.animation-delay.ms]="idx * 200">
                                 <div class="w-8 h-8 bg-surface-container-highest border border-outline flex items-center justify-center rounded-sm shrink-0 overflow-hidden p-0.5">
                                     @if (member.avatarUrl) {
-                                         <img [src]="member.avatarUrl" class="w-full h-full object-cover grayscale opacity-80" />
+                                         <img [src]="member.avatarUrl" [alt]="member.name" class="w-full h-full object-cover grayscale opacity-80" />
                                     } @else {
                                          <span class="material-symbols-outlined text-on-surface text-sm">person</span>
                                     }
@@ -54,8 +56,8 @@ import { CommonModule } from '@angular/common';
                                 @if (isNew) {
                                     <span class="w-2 h-2 rounded-full bg-primary-container shadow-[0_0_6px_rgba(0,255,194,0.7)] animate-pulse shrink-0" title="New Assignment"></span>
                                 }
-                            </div>
-                        }
+                 </div>
+             }
                         
                         @for (i of getArray(team!.capacity - allMembers.length); track $index) {
                             <div class="flex items-center gap-3 p-3 border border-dashed border-outline-variant mt-auto opacity-50">
@@ -76,7 +78,7 @@ export class DrawResultComponent {
 
   getTeamsInResult() {
       // Return teams that were involved in the selected teams for the draw
-      return Array.from(this.store.selectedTeamIds());
+      return [...new Set([...this.store.currentDrawResults().values(), ...this.store.people().filter(person => person.teamId && this.store.selectedTeamIds().has(person.teamId)).map(person => person.teamId!)])].filter(teamId => this.store.teams().some(team => team.id === teamId));
   }
 
   getTeam(teamId: string) {

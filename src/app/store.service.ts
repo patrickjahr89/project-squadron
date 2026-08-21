@@ -1,11 +1,13 @@
-import { Injectable, computed, signal } from '@angular/core';
-import { Assignment, DrawPlan, DrawStatus, Person, Team, createDrawPlan, freeCapacity, teamMembers, validateDraw, validateDrawPlan, validatePerson, validateTeam } from './domain';
+import { Injectable, computed, effect, inject, signal } from '@angular/core';
+import { DrawPlan, DrawStatus, Person, Team, createDrawPlan, freeCapacity, teamMembers, validateDraw, validateDrawPlan, validatePerson, validateTeam } from './domain';
+import { RepositoryService } from './repository.service';
 
 export type ViewState = 'dashboard' | 'people' | 'teams' | 'draw_config' | 'draw_anim' | 'draw_result';
 export type { Assignment, DrawPlan, DrawStatus, Person, Team } from './domain';
 
 @Injectable({ providedIn: 'root' })
 export class StoreService {
+  private readonly repository = inject(RepositoryService);
   readonly view = signal<ViewState>('dashboard');
   readonly workflow = signal<DrawStatus>('idle');
   readonly errorMessage = signal<string | null>(null);
@@ -27,6 +29,12 @@ export class StoreService {
   readonly currentDrawResults = signal<Map<string, string>>(new Map());
   readonly drawPlan = signal<DrawPlan | null>(null);
 
+  constructor() {
+    const saved = this.repository.load();
+    if (saved) { this.people.set(saved.people); this.teams.set(saved.teams); this.lastDrawResult.set(saved.lastDrawResult ? { ...saved.lastDrawResult, time: new Date(saved.lastDrawResult.time) } : null); }
+    effect(() => this.repository.save({ version: 1, people: this.people(), teams: this.teams(), lastDrawResult: this.lastDrawResult() ? { ...this.lastDrawResult()!, time: this.lastDrawResult()!.time.toISOString() } : null }));
+  }
+
   readonly totalPersons = computed(() => this.people().length);
   readonly totalTeams = computed(() => this.teams().length);
   readonly totalCapacity = computed(() => this.teams().reduce((sum, team) => sum + team.capacity, 0));
@@ -34,6 +42,13 @@ export class StoreService {
   readonly availableSlots = computed(() => this.teams().reduce((sum, team) => sum + freeCapacity(this.people(), team), 0));
   readonly selectedFreeSlots = computed(() => [...this.selectedTeamIds()].reduce((sum, id) => { const team = this.teams().find(item => item.id === id); return sum + (team ? freeCapacity(this.people(), team) : 0); }, 0));
   readonly drawValidation = computed(() => validateDraw({ people: this.people(), teams: this.teams(), selectedPersonIds: [...this.selectedPeopleIds()], selectedTeamIds: [...this.selectedTeamIds()] }));
+
+  navigate(view: ViewState): void {
+    if (this.workflow() === 'animating') { this.fail('Navigation is locked while the draw is running.'); return; }
+    if (view === 'draw_anim' && this.workflow() !== 'prepared') { this.fail('Prepare a valid draw before starting the animation.'); return; }
+    if (view === 'draw_result' && this.workflow() !== 'completed') { this.fail('No completed draw result is available.'); return; }
+    this.errorMessage.set(null); this.view.set(view);
+  }
 
   private fail(message: string): false { this.errorMessage.set(message); return false; }
   private bumpVersion(): void { this.dataVersion.update(version => version + 1); }
