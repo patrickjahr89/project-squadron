@@ -95,7 +95,7 @@ export class PeopleComponent {
       file.size > 2 * 1024 * 1024 ||
       !["image/png", "image/jpeg", "image/webp"].includes(file.type)
     ) {
-      this.store.errorMessage.set(
+      this.store.setErrorMessage(
         "Image must be PNG, JPEG or WEBP and smaller than 2 MB.",
       );
       return;

@@ -41,21 +41,11 @@ export class DrawConfigComponent {
   }
 
   togglePersonSelection(id: string) {
-    this.store.selectedPeopleIds.update((set) => {
-      const newSet = new Set(set);
-      if (newSet.has(id)) newSet.delete(id);
-      else newSet.add(id);
-      return newSet;
-    });
+    this.store.togglePersonSelection(id);
   }
 
   toggleTeamSelection(id: string) {
-    this.store.selectedTeamIds.update((set) => {
-      const newSet = new Set(set);
-      if (newSet.has(id)) newSet.delete(id);
-      else newSet.add(id);
-      return newSet;
-    });
+    this.store.toggleTeamSelection(id);
   }
 
   selectAllPeople() {
@@ -63,11 +53,11 @@ export class DrawConfigComponent {
       .people()
       .filter((p) => p.teamId === null)
       .map((p) => p.id);
-    this.store.selectedPeopleIds.set(new Set(available));
+    this.store.setSelectedPeople(available);
   }
 
   deselectAllPeople() {
-    this.store.selectedPeopleIds.set(new Set());
+    this.store.setSelectedPeople([]);
   }
 
   selectAllTeams() {
@@ -80,10 +70,10 @@ export class DrawConfigComponent {
         return members < t.capacity;
       })
       .map((t) => t.id);
-    this.store.selectedTeamIds.set(new Set(available));
+    this.store.setSelectedTeams(available);
   }
 
   deselectAllTeams() {
-    this.store.selectedTeamIds.set(new Set());
+    this.store.setSelectedTeams([]);
   }
 }
