@@ -164,7 +164,7 @@ export class TeamsComponent {
       return this.store.people().filter(p => p.teamId === teamId);
   }
   
-  getArray(n: number): any[] {
+   getArray(n: number): undefined[] {
       return new Array(n);
   }
 

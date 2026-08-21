@@ -149,7 +149,7 @@ import { CommonModule } from '@angular/common';
                                 </div>
                             } @else {
                                 <div class="border border-[#3a4a43] bg-surface flex flex-col hover:border-secondary-container transition-colors group">
-                                    <div class="h-6 border-b border-[#3a4a43] bg-surface-container-highest flex items-center justify-between px-2 group-hover:bg-[#201f20] transition-colors cursor-pointer" (click)="toggleTeamSelection(team.id)">
+                                 <div role="button" tabindex="0" (keydown.enter)="toggleTeamSelection(team.id)" class="h-6 border-b border-[#3a4a43] bg-surface-container-highest flex items-center justify-between px-2 group-hover:bg-[#201f20] transition-colors cursor-pointer" (click)="toggleTeamSelection(team.id)">
                                         <div class="flex items-center gap-2">
                                             <input [checked]="store.selectedTeamIds().has(team.id)" (click)="$event.stopPropagation()" (change)="toggleTeamSelection(team.id)" class="tech-checkbox" type="checkbox">
                                             <span class="font-label-sm text-label-sm text-on-surface uppercase">{{ team.name }}</span>
@@ -197,7 +197,7 @@ export class DrawConfigComponent {
       return this.store.people().filter(p => p.teamId === teamId);
   }
 
-  getArray(n: number): any[] {
+   getArray(n: number): undefined[] {
       return new Array(Math.max(0, n));
   }
 
