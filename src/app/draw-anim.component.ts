@@ -97,8 +97,8 @@ export class DrawAnimComponent implements OnInit, OnDestroy {
   bigScramble = signal('HUNTING...');
   progress = signal(0);
 
-  private intervals: any[] = [];
-  private timeouts: any[] = [];
+  private intervals: ReturnType<typeof setInterval>[] = [];
+  private timeouts: ReturnType<typeof setTimeout>[] = [];
   
   private chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()';
   private teamNames: string[] = [];
@@ -114,16 +114,11 @@ export class DrawAnimComponent implements OnInit, OnDestroy {
           this.startScrambles();
       }, 2500));
       
-      this.intervals.push(setInterval(() => {
-          this.progress.update(p => {
-              const np = p + (Math.random() * 4);
-              if (np >= 100) {
-                  this.finishAnimation();
-                  return 100;
-              }
-              return np;
-          });
-      }, 200));
+       this.intervals.push(setInterval(() => {
+           const next = Math.min(100, this.progress() + 2.5);
+           this.progress.set(next);
+           if (next === 100) this.finishAnimation();
+       }, 200));
   }
 
   startScrambles() {
@@ -159,8 +154,7 @@ export class DrawAnimComponent implements OnInit, OnDestroy {
 
   abort() {
       this.clearTimers();
-      this.store.currentDrawResults.set(new Map());
-      this.store.view.set('draw_config');
+       this.store.abortDraw();
   }
 
   clearTimers() {
