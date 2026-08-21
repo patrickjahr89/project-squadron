@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Draw Configuration - TEAM_RANDOMIZER_OS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-surface": "#e5e2e3",
+                      "primary-container": "#00ffc2",
+                      "on-tertiary-container": "#006e7e",
+                      "on-primary": "#003828",
+                      "surface-tint": "#00e1ab",
+                      "on-error": "#690005",
+                      "on-secondary-container": "#480063",
+                      "on-secondary": "#520071",
+                      "primary-fixed-dim": "#00e1ab",
+                      "on-secondary-fixed-variant": "#74009f",
+                      "on-tertiary-fixed": "#001f25",
+                      "tertiary": "#fcfeff",
+                      "on-tertiary-fixed-variant": "#004e5a",
+                      "outline-variant": "#3a4a43",
+                      "on-secondary-fixed": "#320047",
+                      "surface-container-highest": "#353436",
+                      "outline": "#83958c",
+                      "inverse-on-surface": "#313031",
+                      "on-surface-variant": "#b9cbc1",
+                      "secondary-container": "#cf5cff",
+                      "error-container": "#93000a",
+                      "on-primary-fixed": "#002116",
+                      "surface-container-low": "#1c1b1c",
+                      "secondary-fixed": "#f8d8ff",
+                      "on-error-container": "#ffdad6",
+                      "surface-bright": "#3a393a",
+                      "primary": "#fbfffa",
+                      "secondary-fixed-dim": "#ecb2ff",
+                      "secondary": "#ecb2ff",
+                      "tertiary-fixed-dim": "#00daf8",
+                      "on-tertiary": "#00363f",
+                      "on-primary-fixed-variant": "#00513c",
+                      "error": "#ffb4ab",
+                      "inverse-primary": "#006c50",
+                      "surface-container-lowest": "#0e0e0f",
+                      "on-primary-container": "#007255",
+                      "inverse-surface": "#e5e2e3",
+                      "surface-variant": "#353436",
+                      "background": "#131314",
+                      "surface-dim": "#131314",
+                      "tertiary-fixed": "#a5eeff",
+                      "on-background": "#e5e2e3",
+                      "surface": "#131314",
+                      "surface-container": "#201f20",
+                      "surface-container-high": "#2a2a2b",
+                      "primary-fixed": "#36ffc4",
+                      "tertiary-container": "#9fedff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-max": "1440px",
+                      "unit": "4px",
+                      "margin": "24px",
+                      "gutter": "16px"
+              },
+              "fontFamily": {
+                      "headline-md": [
+                              "JetBrains Mono"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "code-md": [
+                              "JetBrains Mono"
+                      ],
+                      "headline-lg": [
+                              "JetBrains Mono"
+                      ],
+                      "label-sm": [
+                              "JetBrains Mono"
+                      ]
+              },
+              "fontSize": {
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "code-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+            },
+          }
+        }
+    </script>
+<style>
+        body {
+            background-color: #131314;
+            color: #e5e2e3;
+            background-image: 
+                linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 8px 8px;
+        }
+        
+        .glow-active {
+            box-shadow: 0 0 10px rgba(0, 255, 194, 0.3);
+        }
+        
+        .glow-hover:hover {
+            box-shadow: 0 0 10px rgba(0, 255, 194, 0.3);
+        }
+        
+        .scanline {
+            background: linear-gradient(180deg, rgba(0, 255, 194, 0) 0%, rgba(0, 255, 194, 0.02) 50%, rgba(0, 255, 194, 0) 100%);
+            background-size: 100% 4px;
+        }
+        
+        /* Custom Checkbox as X */
+        .tech-checkbox {
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border: 1px solid #3a4a43;
+            background-color: #0e0e0f;
+            position: relative;
+            cursor: pointer;
+        }
+        .tech-checkbox:checked::after {
+            content: 'x';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #00ffc2;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            line-height: 1;
+        }
+        .tech-checkbox:disabled {
+            border-color: #2a2a2b;
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+        .tech-checkbox:disabled:checked::after {
+            color: #83958c;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0e0e0f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3a4a43;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00ffc2;
+        }
+    </style>
+</head>
+<body class="h-screen w-full overflow-hidden flex flex-col font-body-md text-body-md antialiased">
+<!-- TopAppBar -->
+<header class="w-full h-16 border-b border-outline-variant bg-surface-container shadow-[0_0_10px_rgba(0,255,194,0.1)] flex justify-between items-center px-margin z-20 relative shrink-0">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md text-primary-container dark:text-primary-container font-bold tracking-tighter">TEAM_RANDOMIZER_OS</span>
+</div>
+<div class="hidden md:flex items-center gap-gutter">
+<span class="text-on-surface-variant font-code-md hover:text-primary-fixed-dim transition-colors cursor-pointer active:opacity-80">SESSION: 04:20:11</span>
+<span class="text-on-surface-variant font-code-md hover:text-primary-fixed-dim transition-colors cursor-pointer active:opacity-80">STATUS: SYSTEM READY</span>
+</div>
+<div class="flex items-center gap-gutter">
+<button aria-label="Notifications" class="flex items-center justify-center w-8 h-8 rounded text-on-surface-variant hover:text-primary-fixed-dim transition-colors cursor-pointer active:opacity-80" data-icon="notifications_active">
+<span class="material-symbols-outlined">notifications_active</span>
+</button>
+<button aria-label="Help" class="flex items-center justify-center w-8 h-8 rounded text-on-surface-variant hover:text-primary-fixed-dim transition-colors cursor-pointer active:opacity-80" data-icon="help_outline">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<button class="hidden md:flex bg-surface-container-low border border-primary-container text-primary-container font-label-sm text-label-sm px-4 py-2 hover:bg-primary-container hover:text-background transition-colors glow-hover uppercase">
+                NEW SESSION
+            </button>
+<div class="w-8 h-8 rounded border border-outline-variant overflow-hidden shrink-0">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A futuristic, cyberpunk-style user avatar icon showing a stylized digital face silhouette against a dark, glowing circuit board background. The color palette features deep blacks, charcoal greys, and striking neon cyan accents. High-tech, clean vector aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNdWt0ENmFWe5HINNpPd7J71Ccq7Lhx2NynIoTITJgK2ojKrKldZWYEpiKZZ2d5ukPJEaXTh-gmY9c82vKU8e_A0Q5sRgsvM1Kv6UjMJXURAzz3TtrzFwYj_8JN-exABZxlg5X8GhfM4CipZLlPwJ8M3KUp3mO_zPw2nBldz82VjRHmba7PJf5MJs0s3qxOa9nGixvX_BVNhpOu353-azwcu-lJi2-ycI6_u1Cp1Wy09ETIDhjczv7"/>
+</div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden relative">
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col h-full py-margin h-screen w-64 border-r border-outline-variant bg-surface-container-lowest shrink-0 z-10 relative">
+<div class="px-margin mb-8 flex flex-col gap-2">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 border border-outline-variant rounded overflow-hidden">
+<img alt="System Operator Avatar" class="w-full h-full object-cover" data-alt="A technical, minimalist system operator avatar icon. Rendered in a high-contrast dark theme with sharp geometric shapes, resembling a terminal prompt or retro command line interface user icon. Dominant colors are absolute black, dark slate, and stark white." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCc5zwt5C8lid2HL1FEVqxEU8tpSxZmhxk7jVbbEW4MS81RapFV865eJ4uo0K6Om_yCej5bJlRbILebNcnfkCtAtdLasgQ70OYl-NprAB6hl5g6bZYxrZcB72ruwyxYBS9oDhxrKmqtjXFORiDcmWeVdfxb1kyfAzV465RDq9U2BeEbZQex78F5puvua5I-laxzfnMRqEgyLi2POH9s9lWtGzTIZqn4pMgzvB_oGoqLGF6NUBpX38XV"/>
+</div>
+<div>
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-primary tracking-tighter text-sm">CMD_CENTER</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">v2.0.4-stable</div>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-4 flex flex-col gap-2">
+<a class="flex items-center gap-3 py-2 px-3 text-on-surface-variant dark:text-on-surface-variant pl-4 hover:bg-surface-container-highest dark:hover:bg-surface-container-highest hover:text-primary transition-all duration-200 ease-in-out font-label-sm text-label-sm rounded" data-icon="dashboard" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+                    Dashboard
+                </a>
+<a class="flex items-center gap-3 py-2 px-3 text-on-surface-variant dark:text-on-surface-variant pl-4 hover:bg-surface-container-highest dark:hover:bg-surface-container-highest hover:text-primary transition-all duration-200 ease-in-out font-label-sm text-label-sm rounded" data-icon="groups" href="#">
+<span class="material-symbols-outlined text-[20px]">groups</span>
+                    People
+                </a>
+<a class="flex items-center gap-3 py-2 px-3 text-on-surface-variant dark:text-on-surface-variant pl-4 hover:bg-surface-container-highest dark:hover:bg-surface-container-highest hover:text-primary transition-all duration-200 ease-in-out font-label-sm text-label-sm rounded" data-icon="hub" href="#">
+<span class="material-symbols-outlined text-[20px]">hub</span>
+                    Teams
+                </a>
+<!-- Active State applied to Draw -->
+<a class="flex items-center gap-3 py-2 px-3 text-primary dark:text-primary font-bold border-l-2 border-primary-container pl-4 hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-200 ease-in-out font-label-sm text-label-sm rounded bg-surface-container-low" data-icon="shuffle" href="#">
+<span class="material-symbols-outlined text-[20px] text-primary-container">shuffle</span>
+                    Draw
+                </a>
+<a class="flex items-center gap-3 py-2 px-3 text-on-surface-variant dark:text-on-surface-variant pl-4 hover:bg-surface-container-highest dark:hover:bg-surface-container-highest hover:text-primary transition-all duration-200 ease-in-out font-label-sm text-label-sm rounded" data-icon="analytics" href="#">
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+                    Results
+                </a>
+</nav>
+<div class="px-4 mt-auto flex flex-col gap-2">
+<a class="flex items-center gap-3 py-2 px-3 text-on-surface-variant dark:text-on-surface-variant pl-4 hover:bg-surface-container-highest dark:hover:bg-surface-container-highest hover:text-primary transition-all duration-200 ease-in-out font-label-sm text-label-sm rounded" data-icon="settings" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+                    Settings
+                </a>
+<a class="flex items-center gap-3 py-2 px-3 text-on-surface-variant dark:text-on-surface-variant pl-4 hover:bg-surface-container-highest dark:hover:bg-surface-container-highest hover:text-primary transition-all duration-200 ease-in-out font-label-sm text-label-sm rounded" data-icon="terminal" href="#">
+<span class="material-symbols-outlined text-[20px]">terminal</span>
+                    System Status
+                </a>
+<div class="px-3 pt-4 border-t border-outline-variant mt-2">
+<button class="w-full bg-surface-container-low border border-primary-container text-primary-container font-label-sm text-label-sm py-2 hover:bg-primary-container hover:text-background transition-colors glow-hover uppercase text-center flex justify-center items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">shuffle</span>
+                        INITIATE_DRAW
+                    </button>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 h-full overflow-y-auto p-margin flex flex-col gap-gutter relative z-0">
+<div class="flex items-center justify-between mb-4">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">DRAW_CONFIG.EXE</h1>
+<p class="font-code-md text-code-md text-on-surface-variant mt-1">&gt; INITIALIZING TEAM ALLOCATION MATRIX...</p>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter flex-1 h-full">
+<!-- Left Panel: Available Persons -->
+<div class="lg:col-span-4 flex flex-col bg-[#121214] border border-[#252529] rounded h-full overflow-hidden relative">
+<div class="absolute inset-0 scanline pointer-events-none opacity-20"></div>
+<div class="h-8 border-b border-[#252529] bg-surface-container flex items-center justify-between px-3 shrink-0 relative z-10">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-primary uppercase">AVAILABLE PERSONS</span>
+</div>
+<span class="font-code-md text-code-md text-on-surface-variant text-[10px]">TOTAL: 14</span>
+</div>
+<div class="p-3 flex justify-between gap-2 border-b border-[#252529] shrink-0 relative z-10">
+<button class="flex-1 bg-transparent border border-outline-variant text-on-surface font-label-sm text-label-sm py-1.5 hover:border-primary-container hover:text-primary-container transition-colors text-center text-[10px]">
+                            SELECT ALL
+                        </button>
+<button class="flex-1 bg-transparent border border-outline-variant text-on-surface font-label-sm text-label-sm py-1.5 hover:border-error hover:text-error transition-colors text-center text-[10px]">
+                            DESELECT ALL
+                        </button>
+</div>
+<div class="flex-1 overflow-y-auto p-2 relative z-10 flex flex-col gap-1">
+<!-- Person Item (Selected) -->
+<label class="flex items-center justify-between p-2 border border-transparent hover:border-[#3a4a43] hover:bg-surface-container-highest cursor-pointer group transition-colors">
+<div class="flex items-center gap-3">
+<input checked="" class="tech-checkbox" type="checkbox"/>
+<span class="font-code-md text-code-md text-on-surface">ALEX_MERCER</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant text-[10px] opacity-0 group-hover:opacity-100 transition-opacity">ID:001</span>
+</label>
+<!-- Person Item (Selected) -->
+<label class="flex items-center justify-between p-2 border border-transparent hover:border-[#3a4a43] hover:bg-surface-container-highest cursor-pointer group transition-colors">
+<div class="flex items-center gap-3">
+<input checked="" class="tech-checkbox" type="checkbox"/>
+<span class="font-code-md text-code-md text-on-surface">SARAH_CONNOR</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant text-[10px] opacity-0 group-hover:opacity-100 transition-opacity">ID:002</span>
+</label>
+<!-- Person Item (Unselected) -->
+<label class="flex items-center justify-between p-2 border border-transparent hover:border-[#3a4a43] hover:bg-surface-container-highest cursor-pointer group transition-colors">
+<div class="flex items-center gap-3">
+<input class="tech-checkbox" type="checkbox"/>
+<span class="font-code-md text-code-md text-on-surface">JOHN_DOE</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant text-[10px] opacity-0 group-hover:opacity-100 transition-opacity">ID:003</span>
+</label>
+<!-- Person Item (Locked/Assigned) -->
+<div class="flex items-center justify-between p-2 border border-transparent opacity-50 cursor-not-allowed">
+<div class="flex items-center gap-3">
+<input checked="" class="tech-checkbox" disabled="" type="checkbox"/>
+<span class="font-code-md text-code-md text-on-surface-variant line-through decoration-outline">JANE_SMITH</span>
+</div>
+<span class="font-label-sm text-label-sm text-error text-[10px] border border-error px-1">ASSIGNED</span>
+</div>
+</div>
+</div>
+<!-- Center Summary & Right Panel Wrapper -->
+<div class="lg:col-span-8 flex flex-col gap-gutter h-full">
+<!-- Top Section: Center Summary & CTA -->
+<div class="flex flex-col md:flex-row gap-gutter shrink-0">
+<!-- Center Summary -->
+<div class="flex-1 bg-[#121214] border border-primary-container rounded p-4 relative overflow-hidden glow-active">
+<div class="absolute top-0 left-0 w-2 h-2 border-t border-l border-primary-container"></div>
+<div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-primary-container"></div>
+<div class="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-primary-container"></div>
+<div class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-primary-container"></div>
+<h2 class="font-label-sm text-label-sm text-primary-container uppercase mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">monitoring</span>
+                                DRAW CONFIGURATION
+                            </h2>
+<div class="grid grid-cols-3 gap-4">
+<div class="flex flex-col border-l border-[#3a4a43] pl-3">
+<span class="font-label-sm text-label-sm text-on-surface-variant text-[10px] mb-1">SELECTED</span>
+<span class="font-headline-md text-headline-md text-primary">07</span>
+</div>
+<div class="flex flex-col border-l border-[#3a4a43] pl-3">
+<span class="font-label-sm text-label-sm text-on-surface-variant text-[10px] mb-1">TEAMS</span>
+<span class="font-headline-md text-headline-md text-primary">03</span>
+</div>
+<div class="flex flex-col border-l border-[#3a4a43] pl-3">
+<span class="font-label-sm text-label-sm text-on-surface-variant text-[10px] mb-1">TOTAL SLOTS</span>
+<span class="font-headline-md text-headline-md text-primary">11</span>
+</div>
+</div>
+</div>
+<!-- CTA Box -->
+<div class="w-full md:w-48 bg-[#121214] border border-[#252529] rounded flex flex-col items-center justify-center p-4">
+<button class="w-full h-full min-h-[80px] bg-[#121214] border-2 border-primary-container text-primary-container font-headline-md text-headline-md font-bold uppercase hover:bg-primary-container hover:text-on-primary transition-all glow-active flex flex-col items-center justify-center group relative overflow-hidden">
+<span class="absolute inset-0 bg-primary-container opacity-0 group-hover:opacity-10 transition-opacity"></span>
+<span class="relative z-10 flex items-center gap-2">
+                                    START
+                                    <span class="material-symbols-outlined text-[24px]">play_arrow</span>
+</span>
+<span class="relative z-10 font-label-sm text-label-sm text-[10px] mt-1 opacity-70">EXECUTE_DRAW</span>
+</button>
+</div>
+</div>
+<!-- Right Panel: Active Teams -->
+<div class="flex-1 bg-[#121214] border border-[#252529] rounded h-full overflow-hidden flex flex-col relative">
+<div class="absolute inset-0 scanline pointer-events-none opacity-20"></div>
+<div class="h-8 border-b border-[#252529] bg-surface-container flex items-center justify-between px-3 shrink-0 relative z-10">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-primary uppercase">ACTIVE TEAMS MATRIX</span>
+</div>
+<button class="font-code-md text-code-md text-primary-container text-[10px] hover:underline flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">add</span> ADD TEAM
+                            </button>
+</div>
+<div class="flex-1 overflow-y-auto p-4 relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-max">
+<!-- Team Card 1 -->
+<div class="border border-[#3a4a43] bg-surface flex flex-col hover:border-secondary-container transition-colors group">
+<div class="h-6 border-b border-[#3a4a43] bg-surface-container-highest flex items-center justify-between px-2 group-hover:bg-[#201f20] transition-colors">
+<div class="flex items-center gap-2">
+<input checked="" class="tech-checkbox" type="checkbox"/>
+<span class="font-label-sm text-label-sm text-on-surface">ALPHA_SQUAD</span>
+</div>
+<span class="font-code-md text-code-md text-secondary-container text-[10px]">CAP: 2/4</span>
+</div>
+<div class="p-2 flex flex-col gap-1">
+<!-- Slots -->
+<div class="border-l-2 border-secondary-container pl-2 py-0.5 bg-[#1a1a1c]">
+<span class="font-code-md text-code-md text-on-surface-variant text-[11px]">SLOT_01: JANE_SMITH</span>
+</div>
+<div class="border-l-2 border-secondary-container pl-2 py-0.5 bg-[#1a1a1c]">
+<span class="font-code-md text-code-md text-on-surface-variant text-[11px]">SLOT_02: BOB_JONES</span>
+</div>
+<div class="border border-dashed border-[#3a4a43] pl-2 py-0.5 bg-transparent opacity-50">
+<span class="font-code-md text-code-md text-on-surface-variant text-[10px]">READY FOR INPUT...</span>
+</div>
+<div class="border border-dashed border-[#3a4a43] pl-2 py-0.5 bg-transparent opacity-50">
+<span class="font-code-md text-code-md text-on-surface-variant text-[10px]">READY FOR INPUT...</span>
+</div>
+</div>
+</div>
+<!-- Team Card 2 (Full/Locked) -->
+<div class="border border-[#252529] bg-[#0e0e0f] flex flex-col opacity-75">
+<div class="h-6 border-b border-[#252529] bg-[#121214] flex items-center justify-between px-2">
+<div class="flex items-center gap-2">
+<input checked="" class="tech-checkbox" disabled="" type="checkbox"/>
+<span class="font-label-sm text-label-sm text-on-surface-variant line-through">BRAVO_TEAM</span>
+</div>
+<span class="font-code-md text-code-md text-error text-[10px] border border-error px-1">LOCKED (3/3)</span>
+</div>
+<div class="p-2 flex flex-col gap-1">
+<div class="border-l-2 border-[#3a4a43] pl-2 py-0.5 bg-[#131314]">
+<span class="font-code-md text-code-md text-outline text-[11px]">SLOT_01: USER_X</span>
+</div>
+<div class="border-l-2 border-[#3a4a43] pl-2 py-0.5 bg-[#131314]">
+<span class="font-code-md text-code-md text-outline text-[11px]">SLOT_02: USER_Y</span>
+</div>
+<div class="border-l-2 border-[#3a4a43] pl-2 py-0.5 bg-[#131314]">
+<span class="font-code-md text-code-md text-outline text-[11px]">SLOT_03: USER_Z</span>
+</div>
+</div>
+</div>
+<!-- Team Card 3 (Empty) -->
+<div class="border border-[#3a4a43] bg-surface flex flex-col hover:border-secondary-container transition-colors group">
+<div class="h-6 border-b border-[#3a4a43] bg-surface-container-highest flex items-center justify-between px-2 group-hover:bg-[#201f20] transition-colors">
+<div class="flex items-center gap-2">
+<input checked="" class="tech-checkbox" type="checkbox"/>
+<span class="font-label-sm text-label-sm text-on-surface">CHARLIE_OP</span>
+</div>
+<span class="font-code-md text-code-md text-secondary-container text-[10px]">CAP: 0/4</span>
+</div>
+<div class="p-2 flex flex-col gap-1">
+<div class="border border-dashed border-[#3a4a43] pl-2 py-0.5 bg-transparent opacity-50">
+<span class="font-code-md text-code-md text-on-surface-variant text-[10px]">READY FOR INPUT...</span>
+</div>
+<div class="border border-dashed border-[#3a4a43] pl-2 py-0.5 bg-transparent opacity-50">
+<span class="font-code-md text-code-md text-on-surface-variant text-[10px]">READY FOR INPUT...</span>
+</div>
+<div class="border border-dashed border-[#3a4a43] pl-2 py-0.5 bg-transparent opacity-50">
+<span class="font-code-md text-code-md text-on-surface-variant text-[10px]">READY FOR INPUT...</span>
+</div>
+<div class="border border-dashed border-[#3a4a43] pl-2 py-0.5 bg-transparent opacity-50">
+<span class="font-code-md text-code-md text-on-surface-variant text-[10px]">READY FOR INPUT...</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>
