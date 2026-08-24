@@ -27,7 +27,7 @@ export function avatarUrlForPerson(
   for (const character of person.id)
     hash = (hash * 31 + character.charCodeAt(0)) | 0;
   const placeholderNumber = (Math.abs(hash) % placeholderAvatarCount) + 1;
-  return `/assets/people/${placeholderNumber}.png`;
+  return `assets/people/${placeholderNumber}.png`;
 }
 
 export interface Team {
