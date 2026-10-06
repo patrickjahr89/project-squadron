@@ -174,11 +174,33 @@
               }}</span>
             </div>
           </div>
+          <div class="mt-5 border-t border-[#3a4a43] pt-4 font-label-sm text-label-sm text-on-surface-variant text-[10px] uppercase">
+            Assignments are randomly distributed across all selected teams with free capacity.
+          </div>
         </div>
 
         <div
-          class="w-full md:w-48 bg-[#121214] border border-[#252529] rounded flex flex-col items-center justify-center p-4"
+          class="w-full md:w-56 bg-[#121214] border border-[#252529] rounded flex flex-col items-center justify-center p-4 gap-3"
         >
+          <div class="w-full">
+            <div class="font-label-sm text-[10px] text-on-surface-variant uppercase mb-2">Playback</div>
+            <div class="grid grid-cols-2 gap-1">
+              <button
+                type="button"
+                (click)="setPlaybackMode('automatic')"
+                [class.border-primary-container]="store.drawPlaybackMode() === 'automatic'"
+                [class.text-primary-container]="store.drawPlaybackMode() === 'automatic'"
+                class="border border-outline-variant py-1 font-label-sm text-[10px] uppercase"
+              >Auto</button>
+              <button
+                type="button"
+                (click)="setPlaybackMode('manual')"
+                [class.border-primary-container]="store.drawPlaybackMode() === 'manual'"
+                [class.text-primary-container]="store.drawPlaybackMode() === 'manual'"
+                class="border border-outline-variant py-1 font-label-sm text-[10px] uppercase"
+              >Manual</button>
+            </div>
+          </div>
           <button
             (click)="store.executeDraw()"
             class="w-full h-full min-h-[80px] bg-[#121214] border-2 border-primary-container text-primary-container font-headline-md text-headline-md font-bold uppercase hover:bg-primary-container hover:text-on-primary transition-all shadow-[0_0_10px_rgba(0,255,194,0.3)] flex flex-col items-center justify-center group relative overflow-hidden"

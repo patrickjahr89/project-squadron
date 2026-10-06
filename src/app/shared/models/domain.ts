@@ -173,7 +173,7 @@ export function createDrawPlan(
   if (!validation.valid) throw new Error(validation.message ?? "Invalid draw.");
   const next = random(seed);
   const people = shuffle(snapshot.selectedPersonIds, next);
-  const teams = shuffle(snapshot.selectedTeamIds, next);
+  const teams = [...snapshot.selectedTeamIds];
   const capacities = Object.fromEntries(
     teams.map((id) => [
       id,
@@ -185,14 +185,8 @@ export function createDrawPlan(
   );
   const assignments: Assignment[] = [];
   for (const personId of people) {
-    const available = teams
-      .filter((teamId) => capacities[teamId] > 0)
-      .sort((a, b) => capacities[a] - capacities[b]);
-    const lowestCapacity = available[0];
-    const tied = available.filter(
-      (teamId) => capacities[teamId] === capacities[lowestCapacity],
-    );
-    const teamId = tied[Math.floor(next() * tied.length)];
+    const availableTeams = teams.filter((teamId) => capacities[teamId] > 0);
+    const teamId = availableTeams[Math.floor(next() * availableTeams.length)];
     assignments.push({ personId, teamId });
     capacities[teamId]--;
   }

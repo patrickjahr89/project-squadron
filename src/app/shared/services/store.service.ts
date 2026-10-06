@@ -32,6 +32,8 @@ export type ViewState =
   | "draw_anim"
   | "draw_result";
 
+export type DrawPlaybackMode = "automatic" | "manual";
+
 const routesByView: Record<ViewState, string> = {
   dashboard: "/dashboard",
   people: "/people",
@@ -57,6 +59,8 @@ interface StoreState {
   teams: Team[];
   selectedPeopleIds: Set<string>;
   selectedTeamIds: Set<string>;
+  selectedTeamOrder: string[];
+  drawPlaybackMode: DrawPlaybackMode;
   lastDrawResult: { time: Date; persons: number; teams: number } | null;
   currentDrawResults: Map<string, string>;
   drawResults: DrawResult[];
@@ -72,6 +76,8 @@ const initialState: StoreState = {
   teams: [],
   selectedPeopleIds: new Set(),
   selectedTeamIds: new Set(),
+  selectedTeamOrder: [],
+  drawPlaybackMode: "automatic",
   lastDrawResult: null,
   currentDrawResults: new Map(),
   drawResults: [],
@@ -147,18 +153,29 @@ export const StoreService = signalStore(
       },
       toggleTeamSelection(id: string): void {
         const selectedTeamIds = new Set(store.selectedTeamIds());
+        const selectedTeamOrder = [...store.selectedTeamOrder()];
         if (selectedTeamIds.has(id)) {
           selectedTeamIds.delete(id);
+          const index = selectedTeamOrder.indexOf(id);
+          if (index >= 0) selectedTeamOrder.splice(index, 1);
         } else {
           selectedTeamIds.add(id);
+          selectedTeamOrder.push(id);
         }
-        patchState(store, { selectedTeamIds });
+        patchState(store, { selectedTeamIds, selectedTeamOrder });
       },
       setSelectedPeople(ids: Iterable<string>): void {
         patchState(store, { selectedPeopleIds: new Set(ids) });
       },
       setSelectedTeams(ids: Iterable<string>): void {
-        patchState(store, { selectedTeamIds: new Set(ids) });
+        const selectedTeamOrder = [...ids];
+        patchState(store, {
+          selectedTeamIds: new Set(selectedTeamOrder),
+          selectedTeamOrder,
+        });
+      },
+      setDrawPlaybackMode(drawPlaybackMode: DrawPlaybackMode): void {
+        patchState(store, { drawPlaybackMode });
       },
       navigate(view: ViewState): void {
         if (store.workflow() === "animating") {
@@ -332,6 +349,7 @@ export const StoreService = signalStore(
           errorMessage: null,
           selectedPeopleIds: new Set(people.map((person) => person.id)),
           selectedTeamIds: new Set(teams.map((team) => team.id)),
+          selectedTeamOrder: teams.map((team) => team.id),
           workflow: "configuring",
         });
         void router.navigateByUrl("/draw/config");
@@ -347,7 +365,7 @@ export const StoreService = signalStore(
                 people: store.people(),
                 teams: store.teams(),
                 selectedPersonIds: [...store.selectedPeopleIds()],
-                selectedTeamIds: [...store.selectedTeamIds()],
+                selectedTeamIds: store.selectedTeamOrder(),
               },
               seed,
               store.dataVersion(),

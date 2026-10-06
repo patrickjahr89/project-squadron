@@ -48,6 +48,10 @@ export class DrawConfigComponent {
     this.store.toggleTeamSelection(id);
   }
 
+  setPlaybackMode(mode: "automatic" | "manual") {
+    this.store.setDrawPlaybackMode(mode);
+  }
+
   selectAllPeople() {
     const available = this.store
       .people()
