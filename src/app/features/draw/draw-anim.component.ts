@@ -76,7 +76,7 @@ export class DrawAnimComponent implements OnInit, OnDestroy {
     this.clearIntervals();
     this.scrambleCode.set("MATCH CONFIRMED");
     this.phase.set("announced");
-    this.timeouts.push(setTimeout(() => this.moveCurrentToTeam(), 3000));
+    this.timeouts.push(setTimeout(() => this.moveCurrentToTeam(), 500));
   }
 
   moveCurrentToTeam() {
