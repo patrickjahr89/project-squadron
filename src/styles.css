@@ -120,6 +120,18 @@ body {
 }
 
 /* Animations */
+/* View-transition snapshots live outside Angular's component style scope. */
+::view-transition-group(assigned-person) {
+  animation-duration: 1400ms;
+  animation-timing-function: cubic-bezier(0.45, 0, 0.2, 1);
+}
+
+::view-transition-old(assigned-person),
+::view-transition-new(assigned-person) {
+  animation-duration: inherit;
+  animation-timing-function: inherit;
+}
+
 @keyframes neon-pulse {
   0%,
   100% {

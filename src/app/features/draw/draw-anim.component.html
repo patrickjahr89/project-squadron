@@ -17,17 +17,18 @@
         <div class="font-code-md text-sm text-on-surface-variant uppercase">Next candidate ready</div>
         <div class="mt-3 font-headline-md text-xl text-primary-container uppercase">Awaiting reveal command</div>
       } @else if (phase() === "matching") {
-        <div class="font-code-md text-sm text-on-surface-variant uppercase">Matching candidate to {{ currentTeamName }}</div>
+        <div class="font-code-md text-sm text-on-surface-variant uppercase">Matching candidate</div>
         <div class="mt-4 font-headline-lg text-3xl text-primary-container tracking-widest neon-glow-primary">{{ scrambleCode() }}</div>
       } @else if (phase() === "announced" && currentPerson) {
-        <div class="font-code-md text-sm text-secondary-container uppercase">Assignment confirmed. Transferring in 3 seconds.</div>
-        <div class="assignment-card mt-5 flex items-center gap-4 border border-primary-container bg-surface-container-lowest px-6 py-4 text-left" [style.view-transition-name]="currentTransitionName()">
+        <div class="font-code-md text-sm text-secondary-container uppercase">Assignment confirmed. Preparing transfer.</div>
+        <div class="assignment-card mt-5 flex items-center gap-4 border border-primary-container bg-surface-container-lowest px-6 py-4 text-left" style="view-transition-name: assigned-person">
           <div class="w-12 h-12 border border-outline overflow-hidden"><img [src]="currentPerson.avatarUrl || 'assets/people/1.png'" [alt]="currentPerson.name" class="w-full h-full object-cover" /></div>
           <div>
             <div class="font-headline-md text-xl text-on-surface uppercase">{{ currentPerson.name }}</div>
-            <div class="font-code-md text-xs text-primary-container uppercase">&rarr; {{ currentTeamName }}</div>
           </div>
         </div>
+      } @else if (phase() === "moving") {
+        <div class="font-code-md text-sm text-primary-container uppercase">Transferring assignment</div>
       } @else {
         <div class="font-headline-md text-xl text-primary-container uppercase">Sequence complete</div>
       }
@@ -44,7 +45,7 @@
 
     <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter pb-8">
       @for (teamId of store.selectedTeamOrder(); track teamId) {
-        @let team = store.teams().find((item) => item.id === teamId);
+        @let team = teamById(teamId);
         @let members = teamMembers(teamId);
         <div class="border border-outline-variant bg-[#121214] min-h-48">
           <div class="flex justify-between border-b border-outline-variant px-4 py-3 bg-surface-container-highest">
@@ -53,8 +54,7 @@
           </div>
           <div class="p-3 flex flex-col gap-2">
             @for (member of members; track member.id) {
-              @let transitionIndex = revealedIndex(member.id);
-              <div class="assignment-card flex items-center gap-2 border border-outline-variant bg-surface-container-lowest p-2" [style.view-transition-name]="transitionIndex >= 0 ? 'assigned-person-' + transitionIndex : null">
+              <div class="assignment-card flex items-center gap-2 border border-outline-variant bg-surface-container-lowest p-2" [style.view-transition-name]="phase() === 'moving' && member.id === currentAssignment?.personId ? 'assigned-person' : null">
                 <span class="w-2 h-2 bg-primary-container shrink-0"></span>
                 <span class="font-code-md text-xs text-on-surface uppercase truncate">{{ member.name }}</span>
               </div>

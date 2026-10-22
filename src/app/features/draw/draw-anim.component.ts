@@ -11,7 +11,7 @@ import { CommonModule } from "@angular/common";
 import { Assignment, Person } from "../../shared/models/domain";
 import { StoreService } from "../../shared/services/store.service";
 
-type PlaybackPhase = "ready" | "matching" | "announced" | "finished";
+type PlaybackPhase = "ready" | "matching" | "announced" | "moving" | "finished";
 
 @Component({
   selector: "app-draw-anim",
@@ -32,6 +32,8 @@ export class DrawAnimComponent implements OnInit, OnDestroy {
 
   private intervals: ReturnType<typeof setInterval>[] = [];
   private timeouts: ReturnType<typeof setTimeout>[] = [];
+  private activeTransition?: ViewTransition;
+  private stopped = false;
   private readonly chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
 
   get assignments(): Assignment[] {
@@ -47,14 +49,6 @@ export class DrawAnimComponent implements OnInit, OnDestroy {
     return assignment
       ? this.store.people().find((person) => person.id === assignment.personId)
       : undefined;
-  }
-
-  get currentTeamName(): string {
-    const assignment = this.currentAssignment;
-    return assignment
-      ? (this.store.teams().find((team) => team.id === assignment.teamId)?.name ??
-          assignment.teamId)
-      : "";
   }
 
   ngOnInit() {
@@ -76,39 +70,70 @@ export class DrawAnimComponent implements OnInit, OnDestroy {
     this.clearIntervals();
     this.scrambleCode.set("MATCH CONFIRMED");
     this.phase.set("announced");
-    this.timeouts.push(setTimeout(() => this.moveCurrentToTeam(), 1000));
+    this.timeouts.push(setTimeout(() => this.moveCurrentToTeam(), 1500));
   }
 
   moveCurrentToTeam() {
-    if (this.phase() !== "announced" || !this.currentAssignment) return;
+    if (
+      this.phase() !== "announced" ||
+      !this.currentAssignment ||
+      this.activeTransition
+    )
+      return;
     const assignment = this.currentAssignment;
     const completedIndex = this.currentIndex();
     const move = () => {
-      this.revealedAssignments.update((assignments) => [...assignments, assignment]);
+      if (this.stopped) return;
+      this.revealedAssignments.update((assignments) => [
+        ...assignments,
+        assignment,
+      ]);
+      this.phase.set("moving");
+      this.cdr.detectChanges();
+    };
+    const complete = () => {
+      this.activeTransition = undefined;
+      if (this.stopped) return;
       this.currentIndex.set(completedIndex + 1);
       this.phase.set(
         completedIndex + 1 === this.assignments.length ? "finished" : "ready",
       );
       this.cdr.detectChanges();
+
+      if (completedIndex + 1 === this.assignments.length) {
+        this.timeouts.push(
+          setTimeout(() => this.store.applyDrawResults(), 900),
+        );
+      } else if (this.store.drawPlaybackMode() === "automatic") {
+        this.timeouts.push(setTimeout(() => this.beginCurrent(), 500));
+      }
     };
-    const documentWithTransition = document as Document & {
-      startViewTransition?: (update: () => void) => unknown;
-    };
-    if (documentWithTransition.startViewTransition) {
-      documentWithTransition.startViewTransition(move);
+    const reducedMotion = window.matchMedia?.(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (document.startViewTransition && !reducedMotion) {
+      const transition = document.startViewTransition(move);
+      this.activeTransition = transition;
+      void transition.ready.catch(() => {
+        // Skipped animations reject `ready`, but still finish their DOM update.
+      });
+      void transition.finished.then(complete, () => {
+        if (!this.stopped) this.abort();
+      });
     } else {
       move();
-    }
-
-    if (completedIndex + 1 === this.assignments.length) {
-      this.timeouts.push(setTimeout(() => this.store.applyDrawResults(), 900));
-    } else if (this.store.drawPlaybackMode() === "automatic") {
-      this.timeouts.push(setTimeout(() => this.beginCurrent(), 500));
+      complete();
     }
   }
 
+  teamById(teamId: string) {
+    return this.store.teams().find((team) => team.id === teamId);
+  }
+
   teamMembers(teamId: string): Person[] {
-    const existing = this.store.people().filter((person) => person.teamId === teamId);
+    const existing = this.store
+      .people()
+      .filter((person) => person.teamId === teamId);
     const revealedIds = this.revealedAssignments()
       .filter((assignment) => assignment.teamId === teamId)
       .map((assignment) => assignment.personId);
@@ -120,23 +145,15 @@ export class DrawAnimComponent implements OnInit, OnDestroy {
     ];
   }
 
-  revealedIndex(personId: string): number {
-    return this.revealedAssignments().findIndex(
-      (assignment) => assignment.personId === personId,
-    );
-  }
-
-  currentTransitionName(): string {
-    return `assigned-person-${this.currentIndex()}`;
-  }
-
   private startScramble() {
     this.clearIntervals();
     this.intervals.push(
       setInterval(() => {
         let value = "";
         for (let index = 0; index < 10; index++)
-          value += this.chars.charAt(Math.floor(Math.random() * this.chars.length));
+          value += this.chars.charAt(
+            Math.floor(Math.random() * this.chars.length),
+          );
         this.scrambleCode.set(value);
       }, 65),
     );
@@ -153,6 +170,9 @@ export class DrawAnimComponent implements OnInit, OnDestroy {
   }
 
   private clearTimers() {
+    this.stopped = true;
+    this.activeTransition?.skipTransition();
+    this.activeTransition = undefined;
     this.clearIntervals();
     this.timeouts.forEach(clearTimeout);
     this.timeouts = [];
